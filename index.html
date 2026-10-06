@@ -4,7 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christine Gaylo | CRM Architecture, Workflow Automation & AI Systems</title>
+  <title>Christine Gaylo | Executive Operations, GoHighLevel & AI Automation Systems</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,14 +18,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <!-- FontAwesome for technical icons -->
+  <!-- FontAwesome 6 for Admin & System Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -28,31 +34,23 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            brand: {
-              tint: '#FFF1F0',       /* Backgrounds, hover tints */
-              badge: '#FFD8D4',      /* Subtle fills, badges */
-              border: '#FFB3AC',     /* Borders, dividers */
-              accent: '#FF8A80',     /* Primary accent (light red) */
-              primary: '#F76C63',    /* Primary buttons, links */
-              hover: '#E04B42',      /* Hover/active states */
-              heading: '#1F1B1B',    /* Headings, primary text */
-              body: '#6B6262',       /* Secondary text */
-              bg: '#FAF7F6',         /* Page background */
-              card: '#FFFFFF',       /* Cards, panels */
-              teal: '#2A9D8F',       /* Success / complementary accent */
-              amber: '#E9C46A',      /* Warnings, highlights */
+            admin: {
+              bg: '#F8FAFC',
+              sidebar: '#0F172A',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              accent: '#3B82F6',
+              primary: '#1E293B',
+              success: '#10B981',
+              warning: '#F59E0B',
+              indigo: '#4F46E5',
+              subtle: '#64748B'
             }
           },
-          animation: {
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 5s ease-in-out infinite',
-            'ping-slow': 'ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-6px)' },
-            }
+          boxShadow: {
+            'admin-card': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
+            'admin-elevated': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
+            'admin-modal': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
           }
         }
       }
@@ -61,195 +59,331 @@
 
   <style>
     body {
-      background-color: #FAF7F6;
-      color: #1F1B1B;
+      background-color: #F8FAFC;
+      color: #1E293B;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
     }
 
-    /* Technical grid pattern with brand tint */
-    .tech-grid-bg {
-      background-image: radial-gradient(rgba(247, 108, 99, 0.12) 1px, transparent 1px);
-      background-size: 26px 26px;
+    /* Admin subtle grid background */
+    .admin-subtle-grid {
+      background-image:
+        linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
-    /* Radial ambient glows */
-    .glow-radial-primary {
-      background: radial-gradient(circle, rgba(247, 108, 99, 0.12) 0%, rgba(250, 247, 246, 0) 70%);
+    /* Admin clean panel styling */
+    .admin-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .glow-radial-teal {
-      background: radial-gradient(circle, rgba(42, 157, 143, 0.10) 0%, rgba(250, 247, 246, 0) 70%);
+    .admin-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 12px 0 rgba(15, 23, 42, 0.06);
     }
 
-    .glow-radial-accent {
-      background: radial-gradient(circle, rgba(255, 138, 128, 0.12) 0%, rgba(250, 247, 246, 0) 70%);
+    /* Smooth slider tracks */
+    .testimonial-track {
+      display: flex;
+      gap: 1.25rem;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Glass cards and panels */
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid #FFB3AC;
-    }
-
-    .glass-panel-hover {
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .glass-panel-hover:hover {
-      border-color: #F76C63;
-      box-shadow: 0 12px 32px -8px rgba(247, 108, 99, 0.18);
-      transform: translateY(-2px);
-    }
-
-    /* Custom scrollbars */
+    /* Enterprise Scrollbar */
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #FAF7F6;
+      background: #F1F5F9;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #FFB3AC;
+      background: #CBD5E1;
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #F76C63;
+      background: #94A3B8;
     }
   </style>
 </head>
 
-<body class="tech-grid-bg min-h-screen relative antialiased selection:bg-brand-primary selection:text-white">
+<body class="admin-subtle-grid min-h-screen relative antialiased selection:bg-indigo-600 selection:text-white">
 
-  <!-- Interactive Floating Toast for feedback -->
+  <!-- Admin Notification Toast -->
   <div id="toastNotification"
     class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
     <div
-      class="glass-panel border-brand-teal/50 bg-white px-5 py-3.5 rounded-xl shadow-xl flex items-center space-x-3 text-sm text-brand-heading">
-      <span class="flex h-2.5 w-2.5 relative">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-teal"></span>
+      class="bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-lg shadow-xl flex items-center space-x-3 text-xs">
+      <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
       </span>
-      <span id="toastMessage" class="font-medium font-mono text-xs text-brand-teal">Action completed successfully</span>
+      <span id="toastMessage" class="font-medium font-mono text-emerald-300">Action executed successfully</span>
     </div>
   </div>
 
-  <header class="sticky top-0 z-40 w-full border-b border-brand-border/60 bg-brand-bg/90 backdrop-blur-lg">
+  <!-- Admin Top Command Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
+    <!-- Top System Status Sub-bar -->
+    <div
+      class="bg-slate-900 text-slate-300 px-4 sm:px-8 py-1.5 text-[11px] font-mono flex items-center justify-between border-b border-slate-800">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center gap-1.5 text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>ADMIN WORKSPACE ACTIVE</span>
+        </span>
+        <span class="text-slate-600 hidden md:inline">|</span>
+        <span class="hidden md:inline text-slate-400">Environment: <strong class="text-white">Production CRM
+            v4.8</strong></span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="text-slate-400">Avg Inbound SLA: <strong class="text-emerald-400">&lt; 60s</strong></span>
+        <span class="text-slate-600">|</span>
+        <a href="mailto:christinegaylo@gmail.com"
+          class="text-indigo-400 hover:text-indigo-300 underline font-semibold">christinegaylo@gmail.com</a>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <!-- Monogram and Identity -->
-      <a href="#" class="flex items-center space-x-3 group">
+      <!-- Admin Workspace Identity -->
+      <a href="#" class="flex items-center gap-3 group">
         <div
-          class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white font-mono font-bold text-sm shadow-md shadow-brand-primary/25 group-hover:scale-105 transition-transform">
+          class="w-9 h-9 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-mono font-bold text-sm tracking-wider shadow-sm group-hover:bg-indigo-700 transition-colors">
           CG
         </div>
         <div class="flex flex-col">
-          <span class="font-bold tracking-tight text-brand-heading text-sm">Christine Gaylo</span>
-          <span class="font-mono text-[10px] text-brand-body">Systems & AI Architect</span>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-900 text-sm tracking-tight group-hover:text-indigo-600 transition-colors">
+              Christine Gaylo
+            </span>
+            <span
+              class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+              Admin Portal
+            </span>
+          </div>
+          <span class="text-[11px] text-slate-500 font-medium">
+            Executive Operations & GHL Level 2 Specialist
+          </span>
         </div>
       </a>
 
-      <!-- Navigation Links -->
-      <nav class="hidden md:flex items-center space-x-8 text-xs font-medium text-brand-body">
-        <a href="#pillars" class="hover:text-brand-primary transition-colors">Core Pillars</a>
-        <a href="#loom-walkthroughs" class="hover:text-brand-primary transition-colors flex items-center gap-1.5">
-          <i class="fa-solid fa-play text-[10px] text-brand-teal"></i> Loom Demos
+      <!-- Desktop Admin Module Links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-xs font-semibold text-slate-600">
+        <a href="#about-me"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-id-badge text-slate-400 text-xs"></i>
+          <span>Executive Bio</span>
         </a>
-        <a href="#live-builds" class="hover:text-brand-primary transition-colors">Live Funnels</a>
-        <a href="#stack" class="hover:text-brand-primary transition-colors">Stack Matrix</a>
-        <a href="#roi-calculator" class="hover:text-brand-primary transition-colors">ROI Calculator</a>
+        <a href="#core-capabilities"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-sliders text-slate-400 text-xs"></i>
+          <span>Operations Matrix</span>
+        </a>
+        <a href="#tech-matrix"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-layer-group text-slate-400 text-xs"></i>
+          <span>Tech Registry</span>
+        </a>
+        <a href="#loom-walkthroughs"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-video text-slate-400 text-xs"></i>
+          <span>System Audits</span>
+        </a>
+        <a href="#testimonials"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-clipboard-check text-slate-400 text-xs"></i>
+          <span>Client Ratings</span>
+        </a>
+        <a href="#live-builds"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-chart-line text-slate-400 text-xs"></i>
+          <span>Deployments</span>
+        </a>
+        <a href="#roi-calculator"
+          class="px-3 py-2 rounded-md hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-calculator text-slate-400 text-xs"></i>
+          <span>ROI Model</span>
+        </a>
       </nav>
 
-      <div class="flex items-center space-x-3">
-        <!-- Live Status indicator -->
-        <div
-          class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white border border-brand-teal/40 text-[11px] font-mono text-brand-teal shadow-sm">
-          <span class="relative flex h-2 w-2">
-            <span
-              class="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-teal"></span>
-          </span>
-          <span>Available for Sprints</span>
-        </div>
-
-        <!-- Contact CTA Button -->
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Systems%20Architecture%20%26%20Automation%20Inquiry"
+      <!-- Primary Action Buttons -->
+      <div class="flex items-center space-x-2.5">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Executive%20Operations%20%26%20GHL%20Inquiry"
           target="_blank" rel="noopener noreferrer"
-          class="px-4 py-2 rounded-lg text-xs font-semibold bg-brand-primary hover:bg-brand-hover text-white shadow-md shadow-brand-primary/25 transition-all transform active:scale-95 flex items-center gap-1.5">
-          <i class="fa-brands fa-google text-[11px]"></i>
-          <span>Email Me via Gmail</span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-75"></i>
+          class="hidden sm:inline-flex px-3.5 py-2 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm items-center gap-2 transition-all">
+          <i class="fa-regular fa-envelope text-xs"></i>
+          <span>Contact Admin</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-80"></i>
         </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()"
+          class="lg:hidden p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
+          aria-label="Toggle Navigation">
+          <i id="mobileMenuIcon" class="fa-solid fa-bars text-sm"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenuDropdown" class="hidden lg:hidden border-t border-slate-200 bg-white px-5 py-4 shadow-xl">
+      <div class="flex flex-col space-y-2.5 text-xs font-semibold text-slate-700">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Executive%20Operations%20%26%20GHL%20Inquiry"
+          target="_blank" rel="noopener noreferrer"
+          class="py-2.5 px-3 rounded-lg bg-indigo-600 text-white font-medium flex items-center justify-between mb-2">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email christinegaylo@gmail.com</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+        <a href="#about-me" onclick="toggleMobileMenu()" class="py-2 px-3 rounded hover:bg-slate-100">Executive Bio</a>
+        <a href="#core-capabilities" onclick="toggleMobileMenu()"
+          class="py-2 px-3 rounded hover:bg-slate-100">Operations Matrix</a>
+        <a href="#tech-matrix" onclick="toggleMobileMenu()" class="py-2 px-3 rounded hover:bg-slate-100">Tech
+          Registry</a>
+        <a href="#loom-walkthroughs" onclick="toggleMobileMenu()" class="py-2 px-3 rounded hover:bg-slate-100">System
+          Audits</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()" class="py-2 px-3 rounded hover:bg-slate-100">Client
+          Ratings</a>
+        <a href="#live-builds" onclick="toggleMobileMenu()" class="py-2 px-3 rounded hover:bg-slate-100">Deployments</a>
+        <a href="#roi-calculator" onclick="toggleMobileMenu()" class="py-2 px-3 rounded hover:bg-slate-100">ROI
+          Calculator</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="relative pt-14 pb-20 sm:pt-20 sm:pb-28 overflow-hidden">
-      <div
-        class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[720px] h-[360px] glow-radial-primary pointer-events-none">
-      </div>
+    <!-- Executive Overview / KPI Hero Section -->
+    <section class="py-10 sm:py-14 border-b border-slate-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto">
+        <!-- Breadcrumb & Workspace Status Header -->
+        <div
+          class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100 text-xs font-mono text-slate-500">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-house-laptop text-slate-400"></i>
+            <span>Portal</span>
+            <span class="text-slate-300">/</span>
+            <span class="text-slate-800 font-semibold">Executive Dashboard</span>
+            <span class="text-slate-300">/</span>
+            <span class="text-indigo-600 font-semibold">Operational Oversight</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 flex items-center gap-1.5">
+              <i class="fa-regular fa-clock text-slate-400"></i> Last Synced: Realtime
+            </span>
+          </div>
+        </div>
 
-          <!-- Specialization Badge -->
-          <div
-            class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full glass-panel border-brand-border text-brand-heading text-xs font-mono mb-6 shadow-sm">
-            <i class="fa-solid fa-network-wired text-brand-teal text-xs"></i>
-            <span>CRM Infrastructure • Autonomous Logic • Production AI Agents</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Left Hero Overview (7 cols) -->
+          <div class="lg:col-span-7">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold mb-4">
+              <i class="fa-solid fa-certificate text-indigo-500"></i>
+              <span>GHL LEVEL 2 SPECIALIST & OPERATIONS ARCHITECT</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Business Systems & Operations Management. <span class="text-indigo-600">Engineered for Frictionless
+                Scale.</span>
+            </h1>
+
+            <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+              I am <strong>Christine Gaylo</strong>, an administrative operations leader and Level 2 GoHighLevel
+              Specialist. I oversee end-to-end CRM infrastructure, autonomous AI agents, and cross-platform
+              integrations—transforming complex data bottlenecks into orderly, high-retention client workflows.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="#about-me"
+                class="px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-sm flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-address-card text-xs"></i>
+                <span>Review Executive Bio</span>
+              </a>
+              <a href="#loom-walkthroughs"
+                class="px-5 py-2.5 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-sm flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-circle-play text-indigo-600 text-xs"></i>
+                <span>Inspect Audit Walkthroughs</span>
+              </a>
+              <button onclick="copyEmailToClipboard()"
+                class="px-5 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 font-mono text-xs flex items-center gap-2 transition-all">
+                <i class="fa-regular fa-copy text-slate-500"></i>
+                <span>Copy christinegaylo@gmail.com</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Hero Headline -->
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-brand-heading tracking-tight leading-[1.14]">
-            I replace 40-hour operational chaos with <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-teal">self-healing
-              automations.</span>
-          </h1>
-
-          <p class="mt-6 text-base sm:text-lg text-brand-body leading-relaxed max-w-2xl mx-auto">
-            Architecting mission-critical CRM pipelines, fault-tolerant webhook networks, and agentic LLM workflows that
-            scale without adding operational overhead.
-          </p>
-
-          <!-- Action Buttons -->
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a href="#loom-walkthroughs"
-              class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-primary to-brand-accent hover:from-brand-hover hover:to-brand-primary text-white font-medium text-sm shadow-lg shadow-brand-primary/25 flex items-center gap-2 transition-all">
-              <i class="fa-solid fa-circle-play text-white"></i>
-              <span>Watch Logic Walkthroughs</span>
-            </a>
-            <a href="#live-builds"
-              class="px-6 py-3 rounded-xl glass-panel glass-panel-hover text-brand-heading font-medium text-sm flex items-center gap-2 shadow-sm">
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-brand-body"></i>
-              <span>Inspect Live Builds</span>
-            </a>
-          </div>
-
-          <div class="mt-14 pt-8 border-t border-brand-border/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-            <div class="p-3 bg-white/70 rounded-xl border border-brand-border/40 shadow-sm">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-brand-heading flex items-center gap-1">
-                <span>99.98%</span>
-                <i class="fa-solid fa-check text-brand-teal text-xs"></i>
+          <!-- Right Admin KPI Telemetry Panel (5 cols) -->
+          <div class="lg:col-span-5">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+                <span
+                  class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-pie text-indigo-500"></i>
+                  System Health & Operational Telemetry
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">100%
+                  HEALTHY</span>
               </div>
-              <p class="text-xs text-brand-body mt-1">Webhook Sync Reliability</p>
-            </div>
-            <div class="p-3 bg-white/70 rounded-xl border border-brand-border/40 shadow-sm">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-brand-heading">450K+</div>
-              <p class="text-xs text-brand-body mt-1">Tasks Orchestrated / Mo</p>
-            </div>
-            <div class="p-3 bg-white/70 rounded-xl border border-brand-border/40 shadow-sm">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-brand-heading">&lt; 90 Sec</div>
-              <p class="text-xs text-brand-body mt-1">Avg Lead-to-Call Speed</p>
-            </div>
-            <div class="p-3 bg-white/70 rounded-xl border border-brand-border/40 shadow-sm">
-              <div class="font-mono text-xl sm:text-2xl font-bold text-brand-heading">$2.4M+</div>
-              <p class="text-xs text-brand-body mt-1">Pipeline Volume Handled</p>
+
+              <div class="grid grid-cols-2 gap-3.5">
+                <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-admin-card">
+                  <div class="text-[11px] font-mono text-slate-500">Inbound Lead SLA</div>
+                  <div class="text-xl font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                    <span>&lt; 60 Sec</span>
+                    <i class="fa-solid fa-bolt text-amber-500 text-xs"></i>
+                  </div>
+                  <div class="text-[10px] text-emerald-600 font-medium mt-1">Autonomous CloseBot Triage</div>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-admin-card">
+                  <div class="text-[11px] font-mono text-slate-500">Webhook Reliability</div>
+                  <div class="text-xl font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                    <span>99.98%</span>
+                    <i class="fa-solid fa-shield-halved text-indigo-600 text-xs"></i>
+                  </div>
+                  <div class="text-[10px] text-slate-500 mt-1">Make / n8n / Zapier Queues</div>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-admin-card">
+                  <div class="text-[11px] font-mono text-slate-500">Client CSAT Rating</div>
+                  <div class="text-xl font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                    <span>3.0 / 3.0</span>
+                    <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                  </div>
+                  <div class="text-[10px] text-emerald-600 font-medium mt-1">#1 Rated L2 Specialist</div>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-admin-card">
+                  <div class="text-[11px] font-mono text-slate-500">Team Advancement</div>
+                  <div class="text-xl font-bold text-slate-900 mt-1 flex items-center gap-1.5">
+                    <span>40% Rate</span>
+                    <i class="fa-solid fa-arrow-trend-up text-emerald-600 text-xs"></i>
+                  </div>
+                  <div class="text-[10px] text-slate-500 mt-1">SOP & Ops Mentorship</div>
+                </div>
+              </div>
+
+              <!-- Quick Verification Pill -->
+              <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-user-shield text-emerald-500"></i>
+                  <span>NDA & Enterprise Security Compliant</span>
+                </span>
+                <span class="text-indigo-600 font-semibold">Ready for Deployment</span>
+              </div>
             </div>
           </div>
         </div>
@@ -257,312 +391,626 @@
       </div>
     </section>
 
-    <section id="pillars" class="py-20 border-t border-brand-border/60 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-14">
-          <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-primary">Core Pillars</h2>
-          <p class="text-2xl sm:text-3xl font-bold text-brand-heading mt-2">Architecture built for resilience, not quick
-            fixes.</p>
-          <p class="text-sm text-brand-body mt-3">Specialized engineering across the three critical layers of modern
-            revenue operations.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-          <!-- Pillar 1 -->
-          <div
-            class="glass-panel glass-panel-hover p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="absolute top-0 right-0 w-32 h-32 glow-radial-primary pointer-events-none"></div>
-            <div>
-              <div
-                class="w-12 h-12 rounded-xl bg-brand-tint border border-brand-border flex items-center justify-center text-brand-primary mb-5 text-xl">
-                <i class="fa-solid fa-database"></i>
-              </div>
-              <h3 class="text-lg font-bold text-brand-heading">CRM Architecture & Data Hygiene</h3>
-              <p class="text-xs text-brand-body mt-2 leading-relaxed">
-                Transforming chaotic databases into single-source-of-truth command centers. Preventing duplicate
-                records, routing unassigned leads, and architecting multi-pipeline lifecycle models.
-              </p>
-
-              <ul class="mt-5 space-y-2.5 text-xs text-brand-heading font-mono">
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>HubSpot Enterprise & GoHighLevel Custom Fields</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>Strict Lifecycle Stage & Deal Stage Logic</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>Attribution Modeling & Multi-touch Tracking</span>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              class="mt-6 pt-4 border-t border-brand-border/60 flex items-center justify-between text-[11px] font-mono text-brand-body">
-              <span>Zero-leakage guarantees</span>
-              <span class="text-brand-primary font-semibold">99.9% Sync</span>
-            </div>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div
-            class="glass-panel glass-panel-hover p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="absolute top-0 right-0 w-32 h-32 glow-radial-teal pointer-events-none"></div>
-            <div>
-              <div
-                class="w-12 h-12 rounded-xl bg-brand-tint border border-brand-border flex items-center justify-center text-brand-teal mb-5 text-xl">
-                <i class="fa-solid fa-diagram-project"></i>
-              </div>
-              <h3 class="text-lg font-bold text-brand-heading">Mission-Critical Automation</h3>
-              <p class="text-xs text-brand-body mt-2 leading-relaxed">
-                Constructing fault-tolerant middleware logic. Utilizing recursive loops, error-handling routers, retry
-                buffers, and Webhook listeners in Make.com and self-hosted n8n.
-              </p>
-
-              <ul class="mt-5 space-y-2.5 text-xs text-brand-heading font-mono">
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>Make.com (Integromat) & Self-Hosted n8n</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>Rate-limit mitigation & Queue management</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>2-way database synchronization (Postgres/Airtable)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              class="mt-6 pt-4 border-t border-brand-border/60 flex items-center justify-between text-[11px] font-mono text-brand-body">
-              <span>Automatic rollback fallback</span>
-              <span class="text-brand-teal font-semibold">Self-Healing</span>
-            </div>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div
-            class="glass-panel glass-panel-hover p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="absolute top-0 right-0 w-32 h-32 glow-radial-accent pointer-events-none"></div>
-            <div>
-              <div
-                class="w-12 h-12 rounded-xl bg-brand-tint border border-brand-border flex items-center justify-center text-brand-primary mb-5 text-xl">
-                <i class="fa-solid fa-microchip"></i>
-              </div>
-              <h3 class="text-lg font-bold text-brand-heading">Autonomous AI & LLM Systems</h3>
-              <p class="text-xs text-brand-body mt-2 leading-relaxed">
-                Deploying smart agents that do more than chat. Crafting RAG knowledge bases, dynamic email qualification
-                agents, and autonomous voice/text lead responders.
-              </p>
-
-              <ul class="mt-5 space-y-2.5 text-xs text-brand-heading font-mono">
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>OpenAI, Anthropic & LangChain Agents</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>RAG Vector Search with Pinecone & Supabase</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i class="fa-solid fa-check text-brand-teal mt-0.5"></i>
-                  <span>Autonomous lead sentiment triage</span>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              class="mt-6 pt-4 border-t border-brand-border/60 flex items-center justify-between text-[11px] font-mono text-brand-body">
-              <span>Context retention memory</span>
-              <span class="text-brand-accent font-semibold">Agentic</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="loom-walkthroughs" class="py-20 bg-brand-tint/40 border-t border-brand-border/60">
+    <!-- Section: Executive Bio & Management Background -->
+    <section id="about-me" class="py-16 border-b border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
           <div>
-            <div class="inline-flex items-center space-x-2 text-xs font-mono text-brand-teal mb-2">
-              <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
-              <span>PROOF OF EXPERTISE // DEEP DIVES</span>
+            <div class="text-xs font-mono font-bold tracking-wider uppercase text-indigo-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-user-check"></i>
+              <span>EXECUTIVE PROFILE & ADMINISTRATIVE RECORD</span>
             </div>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-heading">Behind The Logic: Loom Walkthroughs</h2>
-            <p class="text-sm text-brand-body mt-2 max-w-xl">
-              I don't just state results; I reveal the raw architecture. Inspect recorded screen breakdowns explaining
-              edge-case routing, error catches, and real payload executions.
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+              Executive Background & Strategic Operational Control
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              A comprehensive breakdown of system architecture oversight, team promotion benchmarks, and Level 2
+              GoHighLevel credentials.
             </p>
           </div>
-
-          <!-- Video Filter Tabs -->
-          <div class="flex flex-wrap gap-2 text-xs font-mono" id="loomFilterTabs">
-            <button
-              class="loom-filter-btn px-3 py-1.5 rounded-lg bg-brand-primary text-white font-medium transition-all shadow-sm"
-              data-category="all">All Breakdowns</button>
-            <button
-              class="loom-filter-btn px-3 py-1.5 rounded-lg glass-panel hover:bg-brand-tint text-brand-body transition-all shadow-sm"
-              data-category="make">Make.com</button>
-            <button
-              class="loom-filter-btn px-3 py-1.5 rounded-lg glass-panel hover:bg-brand-tint text-brand-body transition-all shadow-sm"
-              data-category="ai">AI Agents</button>
-            <button
-              class="loom-filter-btn px-3 py-1.5 rounded-lg glass-panel hover:bg-brand-tint text-brand-body transition-all shadow-sm"
-              data-category="crm">HubSpot / CRM</button>
-          </div>
+          <span
+            class="text-xs font-mono text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200 self-start md:self-auto">
+            Role: Systems & Operations Administrator
+          </span>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-          <!-- Interactive Video Simulation Card (Left 7 cols) -->
-          <div class="lg:col-span-7 glass-panel rounded-2xl overflow-hidden border-brand-border shadow-md">
-            <!-- Video top chrome -->
-            <div
-              class="px-4 py-3 bg-brand-heading text-white border-b border-brand-border/20 flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span class="w-3 h-3 rounded-full bg-red-400"></span>
-                <span class="w-3 h-3 rounded-full bg-brand-amber"></span>
-                <span class="w-3 h-3 rounded-full bg-brand-teal"></span>
-                <span class="ml-2 font-mono text-[11px] text-brand-badge" id="currentLoomTitleBar">Loom Walkthrough //
-                  Multi-Branch Error Router.mp4</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-teal/20 text-brand-teal border border-brand-teal/30">1080p
-                  60fps</span>
-              </div>
-            </div>
-
-            <!-- Simulated Loom Video Screen -->
-            <div
-              class="relative bg-brand-heading aspect-video flex flex-col justify-between p-6 group cursor-pointer overflow-hidden"
-              id="loomVideoScreen">
-              <!-- Background Technical Mockup View -->
-              <div class="absolute inset-0 opacity-20 tech-grid-bg"></div>
-
-              <!-- Floating avatar indicator like Loom -->
-              <div class="absolute bottom-6 left-6 flex items-center space-x-3 z-10">
-                <div class="w-12 h-12 rounded-full border-2 border-brand-teal p-0.5 bg-brand-heading shadow-lg">
-                  <div
-                    class="w-full h-full rounded-full bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white text-xs font-bold">
-                    CG
-                  </div>
-                </div>
+          <!-- Profile Card Left (4 cols) -->
+          <div class="lg:col-span-4">
+            <div class="admin-card p-6">
+              <div
+                class="aspect-square w-full rounded-lg overflow-hidden bg-slate-100 border border-slate-200 relative mb-4">
+                <img src="assets/images/profile-placeholder.jpg"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';"
+                  alt="Christine Gaylo - Executive Operations Administrator"
+                  class="w-full h-full object-cover object-top" />
                 <div
-                  class="bg-brand-heading/90 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px] font-mono text-brand-tint">
-                  Christine Gaylo <span class="text-brand-teal">● Rec</span>
-                </div>
-              </div>
-
-              <!-- Center Big Play Button -->
-              <div class="relative z-10 m-auto text-center">
-                <div id="loomPlayIcon"
-                  class="w-16 h-16 rounded-full bg-brand-primary/95 group-hover:scale-110 group-hover:bg-brand-hover text-white flex items-center justify-center shadow-xl shadow-brand-primary/30 transition-all">
-                  <i class="fa-solid fa-play text-xl ml-1"></i>
-                </div>
-                <span
-                  class="inline-block mt-3 px-3 py-1 rounded-md bg-black/60 backdrop-blur text-xs font-mono text-brand-tint">
-                  Click to Simulate Interactive Video Playback
-                </span>
-              </div>
-
-              <!-- Fake Scrubber / Controls -->
-              <div class="relative z-10 w-full pt-4">
-                <div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
-                  <div id="loomProgressTrack"
-                    class="h-full bg-gradient-to-r from-brand-primary to-brand-teal w-1/3 transition-all duration-300">
-                  </div>
-                </div>
-                <div class="flex items-center justify-between text-[11px] font-mono text-brand-tint/80 mt-2">
-                  <span id="loomCurrentTime">01:42</span>
-                  <span class="flex gap-4">
-                    <span>Speed: 1.2x</span>
-                    <span id="loomTotalDuration">04:15</span>
+                  class="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-sm border border-slate-200 px-3 py-1.5 rounded-md flex items-center justify-between text-[11px] font-mono shadow-sm">
+                  <span class="text-slate-800 font-semibold">Christine Gaylo</span>
+                  <span class="text-emerald-600 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Verified Lead
                   </span>
                 </div>
               </div>
-            </div>
 
-            <!-- Video Context Details Sub-bar -->
-            <div class="p-5 border-t border-brand-border/60 bg-white">
-              <h3 id="currentLoomTitle" class="text-base font-bold text-brand-heading">HubSpot to Make.com: Multi-Branch
-                Error Router & Deduplication</h3>
-              <p id="currentLoomSummary" class="text-xs text-brand-body mt-1">
-                Deep dive into a scenario handling 5,000 requests/day. Demonstrating Break / Resume routers, exponential
-                backoff delays, and auto-logging into an operational health dashboard.
-              </p>
+              <div class="space-y-3">
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">Christine Gaylo</h3>
+                  <p class="text-xs text-indigo-600 font-mono font-semibold">Executive Operations & CRM Specialist</p>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Specialized in translating high-level business goals into organized SOPs, multi-channel GHL
+                  sub-accounts, automated voice workflows, and stable API integrations.
+                </p>
+
+                <div class="pt-3 border-t border-slate-100 space-y-2 text-xs font-mono text-slate-600">
+                  <div class="flex justify-between py-1 border-b border-slate-50">
+                    <span class="text-slate-400">Direct Email:</span>
+                    <span class="text-slate-800 font-medium">christinegaylo@gmail.com</span>
+                  </div>
+                  <div class="flex justify-between py-1 border-b border-slate-50">
+                    <span class="text-slate-400">Support Ranking:</span>
+                    <span class="text-emerald-700 font-semibold">Highest-Rated L2 Agent</span>
+                  </div>
+                  <div class="flex justify-between py-1 border-b border-slate-50">
+                    <span class="text-slate-400">Staff Mentorship:</span>
+                    <span class="text-indigo-700 font-semibold">40% Team Promotion Rate</span>
+                  </div>
+                  <div class="flex justify-between py-1">
+                    <span class="text-slate-400">Voice AI Focus:</span>
+                    <span class="text-slate-800">CloseBot, Twilio, Inbound Pay</span>
+                  </div>
+                </div>
+
+                <div class="pt-3">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Executive%20Operations%20Consultation"
+                    target="_blank" rel="noopener noreferrer"
+                    class="w-full py-2.5 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
+                    <i class="fa-regular fa-paper-plane text-xs"></i>
+                    <span>Contact Christine Gaylo</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="lg:col-span-5 space-y-3" id="loomPlaylistContainer">
+          <!-- Operations Pillars Right (8 cols) -->
+          <div class="lg:col-span-8 space-y-5">
 
-            <!-- Item 1 (Active) -->
-            <div
-              class="loom-item-card glass-panel p-4 rounded-xl cursor-pointer border-brand-primary bg-brand-tint/50 transition-all shadow-sm"
-              data-id="1" data-cat="make">
-              <div class="flex items-start justify-between">
+            <!-- Pillar 1: Level 2 GoHighLevel Administration -->
+            <div class="admin-card p-6 border-l-4 border-l-indigo-600">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-600 flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-network-wired"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-base font-bold text-slate-900">GoHighLevel Level 2 Architecture & Voice AI Oversight
+                    </h4>
+                    <p class="text-xs text-slate-500 font-mono">System Configuration, Custom Attributes & Bot Management
+                    </p>
+                  </div>
+                </div>
                 <span
-                  class="px-2 py-0.5 text-[10px] font-mono rounded bg-brand-badge text-brand-heading border border-brand-border">Make.com
-                  + HubSpot</span>
-                <span class="text-xs font-mono text-brand-body">04:15</span>
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold uppercase">Tier
+                  1 Spec</span>
               </div>
-              <h4 class="text-sm font-semibold text-brand-heading mt-2">Multi-Branch Error Routers & Deduplication</h4>
-              <p class="text-xs text-brand-body mt-1">Solving lead collision when multiple webhooks fire in the exact
-                same second.</p>
-
-              <div class="mt-3 flex items-center text-[11px] font-mono text-brand-teal gap-1">
-                <i class="fa-solid fa-circle-check text-[10px]"></i>
-                <span>Resolved 100% duplicate contact issues</span>
+              <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                As a certified GoHighLevel Level 2 Specialist, I resolve mission-critical platform escalations and
+                design advanced multi-channel workflows that circumvent native platform barriers. My builds include
+                conversational AI integration with CloseBot, Assistable.ai, and GHL native AI, creating phone systems
+                that autonomously process intake questionnaires, book appointments, and capture caller credit card
+                payments.
+              </p>
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-semibold text-slate-800 flex items-center gap-1.5 mb-1">
+                    <i class="fa-solid fa-headset text-indigo-500 text-xs"></i>
+                    Bespoke Loom Troubleshooting
+                  </div>
+                  <p class="text-[11px] text-slate-500 leading-normal">
+                    Delivered tailored technical recordings and live Zoom consultation sessions to guide clients through
+                    complex setups, token configurations, and custom webhooks.
+                  </p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-semibold text-slate-800 flex items-center gap-1.5 mb-1">
+                    <i class="fa-solid fa-credit-card text-emerald-600 text-xs"></i>
+                    Automated Inbound Collections
+                  </div>
+                  <p class="text-[11px] text-slate-500 leading-normal">
+                    Designed autonomous Voice AI agents capable of resolving caller billing queries and executing
+                    real-time payment captures with instant CRM attribution.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <!-- Item 2 -->
-            <div
-              class="loom-item-card glass-panel p-4 rounded-xl cursor-pointer border-brand-border hover:border-brand-primary transition-all shadow-sm"
-              data-id="2" data-cat="ai">
-              <div class="flex items-start justify-between">
+            <!-- Pillar 2: Process Streamlining & Operations Leadership -->
+            <div class="admin-card p-6 border-l-4 border-l-emerald-600">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-people-roof"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-base font-bold text-slate-900">Operations Leadership, Staff Mentorship & SOP Design
+                    </h4>
+                    <p class="text-xs text-slate-500 font-mono">Process Optimization, Knowledge Transfers & Team
+                      Velocity</p>
+                  </div>
+                </div>
                 <span
-                  class="px-2 py-0.5 text-[10px] font-mono rounded bg-brand-badge text-brand-heading border border-brand-border">Claude
-                  3.5 + n8n</span>
-                <span class="text-xs font-mono text-brand-body">03:48</span>
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold uppercase">Leadership</span>
               </div>
-              <h4 class="text-sm font-semibold text-brand-heading mt-2">Autonomous RFP & Contract Parsing Agent</h4>
-              <p class="text-xs text-brand-body mt-1">Extracts deliverables, SLAs, and liability caps directly into
-                Airtable + Slack digest.</p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                Streamlined operational bottlenecks by replacing repetitive manual tasks with structured workflows.
+                Through comprehensive SOP development and one-on-one mentorship, I fostered a culture of execution that
+                resulted in a verified <strong>40% promotion rate</strong> for supervised team members and specialists.
+              </p>
+            </div>
 
-              <div class="mt-3 flex items-center text-[11px] font-mono text-brand-primary gap-1">
-                <i class="fa-solid fa-bolt text-[10px]"></i>
-                <span>4.5 hours review cut to 12 seconds</span>
+            <!-- Pillar 3: Full-Stack Systems & Transactional Integrity -->
+            <div class="admin-card p-6 border-l-4 border-l-slate-700">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-300 text-slate-700 flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-server"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-base font-bold text-slate-900">Enterprise Integrations & Transactional Performance
+                    </h4>
+                    <p class="text-xs text-slate-500 font-mono">PayPal/Honey Maintenance, Relational Databases & Webhook
+                      Queues</p>
+                  </div>
+                </div>
+                <span
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold uppercase">Engineering</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                Supervised the integration and stability of transactional checkout products (Honey & PayPal),
+                eliminating revenue leakages and verifying database integrity across high-concurrency relational schemas
+                (MySQL/SQL).
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Operations Matrix / Service Modules -->
+    <section id="core-capabilities" class="py-16 border-b border-slate-200 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+          <div>
+            <div class="text-xs font-mono font-bold tracking-wider uppercase text-indigo-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check"></i>
+              <span>ADMINISTRATIVE CAPABILITIES & MODULES</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+              Core Operations & Technical Capabilities
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              Systemized functional capabilities ready for enterprise deployment, contract engagements, or agency
+              audits.
+            </p>
+          </div>
+          <span
+            class="text-xs font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg">
+            Status: Fully Operational
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <!-- Module 1 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-base mb-4 border border-indigo-100">
+                <i class="fa-solid fa-sitemap"></i>
+              </div>
+              <h3 class="text-sm font-bold text-slate-900">CRM & Sub-Account Architecture</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Structuring clean snapshots, custom fields, attribution tags, and permission tiers to ensure
+                multi-client data isolation.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-[11px] font-mono text-slate-600">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Snapshot Master
+                  Builds</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Role & Access
+                  Privileges</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Pipeline Stage
+                  Sanitization</li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+              Module: GHL-SYS-01
+            </div>
+          </div>
+
+          <!-- Module 2 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-base mb-4 border border-blue-100">
+                <i class="fa-solid fa-phone-volume"></i>
+              </div>
+              <h3 class="text-sm font-bold text-slate-900">Voice AI & Inbound Call Routing</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Configuring automated agent models in CloseBot, Assistable, and Twilio for 24/7 lead intake and warm
+                failover transfers.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-[11px] font-mono text-slate-600">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Live Call
+                  Fallback Protocol</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Twilio Number
+                  Provisioning</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Voice Payment
+                  Verification</li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+              Module: TEL-VAI-02
+            </div>
+          </div>
+
+          <!-- Module 3 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-base mb-4 border border-emerald-100">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+              </div>
+              <h3 class="text-sm font-bold text-slate-900">Webhook & iPaaS Middleware</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Building reliable data pipes with Make.com, n8n, and Zapier to sync third-party records without
+                duplicates or lost events.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-[11px] font-mono text-slate-600">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Automated Retry
+                  Logic</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Multi-Branch
+                  If/Else Routing</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> JSON Payload
+                  Mapping</li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+              Module: MID-INT-03
+            </div>
+          </div>
+
+          <!-- Module 4 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-base mb-4 border border-amber-100">
+                <i class="fa-solid fa-clipboard-check"></i>
+              </div>
+              <h3 class="text-sm font-bold text-slate-900">Process Audit & SOP Standardization</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Documenting operational manuals, training staff, and performing recurring QA reviews to keep tech debt
+                at zero.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-[11px] font-mono text-slate-600">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Step-by-Step SOP
+                  Video Guides</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Cypress & Postman
+                  Testing</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Cross-Department
+                  Alignment</li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-400">
+              Module: OPS-SOP-04
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Technology Registry & System Inventory -->
+    <section id="tech-matrix" class="py-16 border-b border-slate-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
+          <div>
+            <div class="text-xs font-mono font-bold tracking-wider uppercase text-indigo-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>TECHNOLOGY REGISTRY & APPLICATION CATALOG</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+              Administered Software & Infrastructure Suite
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              Verified operational proficiency across CRM platforms, automation middleware, backend architectures, and
+              QA suites.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+            Total Monitored Stacks: 24 Systems
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Category 1: CRM & Voice AI -->
+          <div class="admin-card p-5 border-t-2 border-t-indigo-600">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+              <span class="text-xs font-bold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-diagram-project text-indigo-600"></i> CRM & Voice AI
+              </span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 text-indigo-700">Core</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">GoHighLevel (GHL)</span>
+                <span class="text-[10px] font-mono text-emerald-700 font-bold">L2 Certified</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Twilio Telephony</span>
+                <span class="text-[10px] font-mono text-slate-500">Voice / SMS</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">CloseBot AI</span>
+                <span class="text-[10px] font-mono text-slate-500">Autonomous</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Assistable.ai</span>
+                <span class="text-[10px] font-mono text-slate-500">Voice Agents</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Thinkrr AI & GHL AI</span>
+                <span class="text-[10px] font-mono text-slate-500">LLM Integrations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Automation & Middleware -->
+          <div class="admin-card p-5 border-t-2 border-t-emerald-600">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+              <span class="text-xs font-bold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-arrows-split-up-and-left text-emerald-600"></i> Automation & iPaaS
+              </span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">Pipelines</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Make.com (Integromat)</span>
+                <span class="text-[10px] font-mono text-slate-500">Advanced Scenarios</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">n8n Workflow Engine</span>
+                <span class="text-[10px] font-mono text-slate-500">Self-Hosted</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Zapier Enterprise</span>
+                <span class="text-[10px] font-mono text-slate-500">Multi-Step Zaps</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">REST & GraphQL APIs</span>
+                <span class="text-[10px] font-mono text-slate-500">JSON Endpoints</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Custom Webhooks</span>
+                <span class="text-[10px] font-mono text-slate-500">Realtime Ingestion</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Backend & Database Operations -->
+          <div class="admin-card p-5 border-t-2 border-t-blue-600">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+              <span class="text-xs font-bold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-server text-blue-600"></i> Backend & Data Stores
+              </span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700">Server</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Laravel & PHP</span>
+                <span class="text-[10px] font-mono text-slate-500">OOP Repository</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Python</span>
+                <span class="text-[10px] font-mono text-slate-500">Automation Scripts</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">MySQL / Relational SQL</span>
+                <span class="text-[10px] font-mono text-slate-500">Schema Indexing</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Express.js / Node</span>
+                <span class="text-[10px] font-mono text-slate-500">API Servers</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">HTML5, Vue & Tailwind</span>
+                <span class="text-[10px] font-mono text-slate-500">Responsive UI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4: DevOps & Quality Assurance -->
+          <div class="admin-card p-5 border-t-2 border-t-amber-500">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+              <span class="text-xs font-bold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-vial-circle-check text-amber-500"></i> DevOps, CI/CD & QA
+              </span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-700">Integrity</span>
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Postman API Testing</span>
+                <span class="text-[10px] font-mono text-slate-500">Regression Tests</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Cypress & Puppeteer</span>
+                <span class="text-[10px] font-mono text-slate-500">E2E Verification</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">GitHub Actions CI/CD</span>
+                <span class="text-[10px] font-mono text-slate-500">Automated Pipeline</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Git / GitLab / Bitbucket</span>
+                <span class="text-[10px] font-mono text-slate-500">Version Control</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-50 border border-slate-100">
+                <span class="font-medium text-slate-800">Swagger / OpenAPI</span>
+                <span class="text-[10px] font-mono text-slate-500">API Documentation</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Production System Audits (HTML5 Video Player) -->
+    <section id="loom-walkthroughs" class="py-16 border-b border-slate-200 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+          <div>
+            <div class="text-xs font-mono font-bold tracking-wider uppercase text-indigo-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-video"></i>
+              <span>SYSTEM AUDITS & WORKFLOW WALKTHROUGHS</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+              Production System Video Audits
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              Inspect video recordings documenting actual platform overrides, date calculations, voice failover trees,
+              and Claude MCP server connections.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg">
+            Registry: 5 Documented Case Studies
+          </span>
+        </div>
+
+        <!-- Video Selection Tab Bar -->
+        <div class="flex flex-wrap gap-2 mb-6" id="videoTabs">
+          <button onclick="switchVideo('smart-reminders', this)"
+            class="video-tab-btn active px-3.5 py-2 rounded-lg bg-indigo-600 text-white font-medium text-xs shadow-sm transition-all flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check text-[11px]"></i>
+            <span>Smart Reminders & Code</span>
+          </button>
+          <button onclick="switchVideo('recurring-events', this)"
+            class="video-tab-btn px-3.5 py-2 rounded-lg bg-white hover:bg-slate-100 text-slate-700 font-medium text-xs border border-slate-200 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-arrows-rotate text-[11px]"></i>
+            <span>Recurring Event Logic</span>
+          </button>
+          <button onclick="switchVideo('voice-ai-tools', this)"
+            class="video-tab-btn px-3.5 py-2 rounded-lg bg-white hover:bg-slate-100 text-slate-700 font-medium text-xs border border-slate-200 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-robot text-[11px]"></i>
+            <span>Voice AI & Call Routing</span>
+          </button>
+          <button onclick="switchVideo('email-ai-parser', this)"
+            class="video-tab-btn px-3.5 py-2 rounded-lg bg-white hover:bg-slate-100 text-slate-700 font-medium text-xs border border-slate-200 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-envelope-open-text text-[11px]"></i>
+            <span>AI Email Parser</span>
+          </button>
+          <button onclick="switchVideo('crm-mcp-claude', this)"
+            class="video-tab-btn px-3.5 py-2 rounded-lg bg-white hover:bg-slate-100 text-slate-700 font-medium text-xs border border-slate-200 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-server text-[11px]"></i>
+            <span>Claude MCP Integration</span>
+          </button>
+        </div>
+
+        <!-- Video Showcase Card -->
+        <div class="admin-card p-6 lg:p-7 shadow-admin-elevated">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- Video Player (7 cols) -->
+            <div class="lg:col-span-7 rounded-lg overflow-hidden bg-slate-900 border border-slate-300 shadow-md">
+              <div class="aspect-video w-full bg-black flex items-center justify-center">
+                <video id="walkthroughVideoPlayer" class="w-full h-full object-contain" controls preload="metadata">
+                  <source id="walkthroughVideoSource" src="assets/videos/bypassing-platform-limits-reminders.mp4"
+                    type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div
+                class="bg-slate-800 text-slate-300 px-4 py-2 flex flex-wrap items-center justify-between text-[11px] font-mono border-t border-slate-700">
+                <span id="videoPathLabel" class="text-slate-300">File:
+                  assets/videos/bypassing-platform-limits-reminders.mp4</span>
+                <span class="text-emerald-400 font-medium">1080p HD Verified Session</span>
               </div>
             </div>
 
-            <!-- Item 3 -->
-            <div
-              class="loom-item-card glass-panel p-4 rounded-xl cursor-pointer border-brand-border hover:border-brand-primary transition-all shadow-sm"
-              data-id="3" data-cat="crm">
-              <div class="flex items-start justify-between">
-                <span
-                  class="px-2 py-0.5 text-[10px] font-mono rounded bg-brand-badge text-brand-heading border border-brand-border">GoHighLevel
-                  + Stripe</span>
-                <span class="text-xs font-mono text-brand-body">05:10</span>
-              </div>
-              <h4 class="text-sm font-semibold text-brand-heading mt-2">Self-Healing Failed Payment Recovery</h4>
-              <p class="text-xs text-brand-body mt-1">Smart retry sequence with personalized payment update landing
-                links via SMS.</p>
+            <!-- Video Documentation Panel (5 cols) -->
+            <div class="lg:col-span-5 space-y-4">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span id="videoCategoryBadge"
+                    class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+                    WORKFLOW AUTOMATION & CUSTOM CODE
+                  </span>
+                  <span id="videoTagBadge"
+                    class="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                    Client Delivery
+                  </span>
+                </div>
 
-              <div class="mt-3 flex items-center text-[11px] font-mono text-brand-teal gap-1">
-                <i class="fa-solid fa-dollar-sign text-[10px]"></i>
-                <span>Saved $38k MRR across 6 months</span>
+                <h3 id="videoTitle" class="text-lg font-bold text-slate-900 leading-snug">
+                  Bypassing Native Platform Limits: Smart Appointment Reminders & Custom Notification Sequences
+                </h3>
+
+                <p id="videoDesc" class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                  A client walkthrough demonstrating a custom appointment workflow built to bypass native platform
+                  limitations. Explore how the system filters tags, evaluates booking days, and uses custom code to
+                  execute precise reminder sequences.
+                </p>
               </div>
+
+              <!-- Technical Specification Box -->
+              <div class="space-y-2 text-xs font-mono">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="text-[10px] uppercase text-slate-400 font-bold">Execution Logic</div>
+                  <div id="videoLogicSpec" class="text-slate-800 font-semibold mt-0.5">
+                    Dynamic day evaluation & custom JavaScript code execution
+                  </div>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="text-[10px] uppercase text-slate-400 font-bold">Stack Architecture</div>
+                  <div id="videoStackSpec" class="text-indigo-700 font-semibold mt-0.5">
+                    GoHighLevel • Custom Code Action • Tag Matrix • Twilio SMS
+                  </div>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="text-[10px] uppercase text-slate-400 font-bold">Admin Outcome</div>
+                  <div id="videoOutcomeSpec" class="text-emerald-700 font-semibold mt-0.5">
+                    Eliminated missed client consultations without rigid native scheduling constraints
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-slate-500">Automated Pipeline</span>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=System%20Audit%20Implementation%20Request"
+                  target="_blank" rel="noopener noreferrer"
+                  class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1.5">
+                  <span>Implement for My Organization</span>
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+              </div>
+
             </div>
 
           </div>
@@ -571,275 +1019,599 @@
       </div>
     </section>
 
-    <section id="live-builds" class="py-20 border-t border-brand-border/60 relative">
+    <!-- Section: Verified Client Reviews -->
+    <section id="testimonials" class="py-16 border-b border-slate-200 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="max-w-2xl mb-12">
-          <div class="inline-flex items-center space-x-2 text-xs font-mono text-brand-primary mb-2">
-            <i class="fa-solid fa-cubes"></i>
-            <span>PRODUCTION DEPLOYMENTS</span>
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+          <div>
+            <div
+              class="text-xs font-mono font-bold tracking-wider uppercase text-emerald-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-star"></i>
+              <span>VERIFIED REVIEWS & SERVICE LOG</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+              Direct Stakeholder Ratings & Feedback
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              Audited performance scores received from agency owners, physicians, and business leaders regarding
+              Christine Gaylo's technical support and delivery.
+            </p>
           </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-heading">Live Builds & Webhook Funnels</h2>
-          <p class="text-sm text-brand-body mt-2">
-            Explore live, production-grade applications, custom lead funnels, and enterprise webhook architectures with
-            verifiable impact metrics.
-          </p>
+
+          <div class="flex items-center gap-3">
+            <span
+              class="text-xs font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> Score: 3.0 / 3.0 (100% CSAT)
+            </span>
+            <div class="flex items-center gap-1.5">
+              <button onclick="prevTestimonial()" aria-label="Previous rating"
+                class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+              </button>
+              <button onclick="nextTestimonial()" aria-label="Next rating"
+                class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Slider Track (Pauses on Hover) -->
+        <div id="sliderViewport" class="relative overflow-hidden rounded-xl py-2" onmouseenter="pauseTestimonials()"
+          onmouseleave="resumeTestimonials()">
+          <div id="testimonialSliderTrack" class="testimonial-track">
+
+            <!-- Review 1: Truman Hooker -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-emerald-600 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>Jun 4 • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
+                      TH
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Truman Hooker</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "Christine has been the best support person I've worked with. She responds quickly, is very patient,
+                    and always goes the extra mile to help. She helped me solve my AI agent issues, set up automations,
+                    build funnels, create complex workflows, and even provided tutorials to make everything easier to
+                    understand. Really appreciate all the help. Christine is knowledgeable, reliable, and an absolute
+                    asset to the team."
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: AI Agents • Funnels • Complex Logic</span>
+                  <span class="text-emerald-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2: Heather Sewczak -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-indigo-600 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>Active Session • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">
+                      HS
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Heather Sewczak</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "Very helpful and thorough, good proactive advice that wasn't exactly my issue but related and she
+                    noticed. Thank you so much!"
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: Proactive Troubleshooting</span>
+                  <span class="text-indigo-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3: Tara Kendrick -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-blue-600 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>Jul 10 • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+                      TK
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Tara Kendrick</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "She was the best agent I have used so far. Super knowledgeable and willing to help make changes on
+                    my behalf instead of making things confusing. Hope to get her again!"
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: Direct Implementation</span>
+                  <span class="text-blue-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 4: Andrew Defee -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-amber-500 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>May 28 • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xs">
+                      AD
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Andrew Defee</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "Christine was quick and efficient with taking care of the issue, while still remaining personable
+                    and warm. Was a good experience overall."
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: Efficient Resolution</span>
+                  <span class="text-amber-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 5: Dr. Brian -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-emerald-600 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>Aug 10 • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
+                      DB
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Dr. Brian</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "Great support as always! Solved our operational hurdle without delay."
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: Continuous Reliability</span>
+                  <span class="text-emerald-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 6: Maria Murray -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-purple-600 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>Jan 2 • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs">
+                      MM
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Maria Murray</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "She was great! Clear and easy to work with. I appreciated her ideas and rapid action."
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: Clear Communication</span>
+                  <span class="text-purple-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 7: Erez Avramov -->
+            <div class="w-full sm:w-[500px] lg:w-[540px] flex-shrink-0">
+              <div
+                class="admin-card p-6 border-l-4 border-l-teal-600 flex flex-col justify-between h-full bg-slate-50/50">
+                <div>
+                  <div
+                    class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 pb-2 border-b border-slate-200">
+                    <span>Jul 17 • Verified Support Log</span>
+                    <span class="text-amber-500 flex gap-0.5"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                  </div>
+                  <div class="flex items-center gap-3 mb-2.5">
+                    <div
+                      class="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold text-xs">
+                      EA
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm">Erez Avramov</h4>
+                      <p class="text-[11px] text-slate-500">Rated Christine: 3 on scale from 1 to 3</p>
+                    </div>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-11">
+                    "Fast and professional support. Got straight to the root cause."
+                  </p>
+                </div>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-200 text-[10px] font-mono text-slate-500 flex justify-between pl-11">
+                  <span>Scope: Speed & Professionalism</span>
+                  <span class="text-teal-700 font-semibold">100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Slider Pagination Indicators -->
+        <div class="flex items-center justify-center gap-2 mt-5" id="testimonialDots"></div>
+
+      </div>
+    </section>
+
+    <!-- Section: Production Deployments -->
+    <section id="live-builds" class="py-16 border-b border-slate-200 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+          <div>
+            <div class="text-xs font-mono font-bold tracking-wider uppercase text-indigo-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-desktop"></i>
+              <span>MANAGED PRODUCTION DEPLOYMENTS</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+              Active Client Funnels & Portals
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              Production client acquisition funnels and custom error architectures built for reliability and high
+              conversion.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg">
+            Active Deployments: 3 Platforms
+          </span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          <!-- Build Card 1 -->
-          <div
-            class="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="p-6">
-              <div class="flex items-center justify-between text-xs font-mono text-brand-body mb-4">
-                <span class="px-2.5 py-1 rounded bg-brand-tint border border-brand-teal/30 text-brand-teal">
-                  <i class="fa-solid fa-signal text-[10px]"></i> Live System
+          <!-- Funnel 1 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold uppercase">
+                  Functional Wellness
                 </span>
-                <span>Enterprise SaaS</span>
+                <span class="text-[10px] font-mono text-emerald-600 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Production
+                </span>
               </div>
 
-              <h3 class="text-lg font-bold text-brand-heading">B2B Speed-to-Lead Routing Engine</h3>
-              <p class="text-xs text-brand-body mt-2 leading-relaxed">
-                A sub-90-second inbound pipeline connecting Framer landing forms to HubSpot deals, Clearbit enrichment,
-                and instant Twilio sales calls.
+              <!-- Media Preview Trigger -->
+              <div onclick="openPreviewModal('live-functionally')"
+                class="relative aspect-video rounded-lg overflow-hidden bg-slate-100 border border-slate-200 mb-3.5 cursor-pointer group">
+                <img src="assets/gifs/live-functionally-metabolic-flexibility.gif"
+                  data-fallback="assets/images/site-previews/live-functionally-metabolic-flexibility.png"
+                  onerror="if(this.src && !this.src.includes(this.dataset.fallback)){ this.src=this.dataset.fallback; } else { this.src='https://placehold.co/600x340/FFFFFF/1E293B?text=Live+Functionally+Preview'; }"
+                  alt="Live Functionally Preview"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="absolute inset-0 bg-slate-900/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span
+                    class="px-3 py-1 rounded bg-white text-slate-800 text-xs font-semibold shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-play text-indigo-600 text-xs"></i>
+                    <span>Preview GIF</span>
+                  </span>
+                </div>
+              </div>
+
+              <h3 class="text-sm font-bold text-slate-900 leading-snug">
+                7-Day FLEX Reset Lead Magnet & Conversion Funnel
+              </h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Doctor-led acquisition system delivering instant workbook PDFs, automated confirmation emails, and
+                tracking sequences.
               </p>
 
-              <!-- Architecture Badges -->
-              <div class="mt-5 flex flex-wrap gap-1.5">
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Framer
-                  Form</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Webhook
-                  API</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">HubSpot
-                  CRM</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Twilio
-                  Voice</span>
-              </div>
-
-              <!-- Metric highlight -->
-              <div
-                class="mt-5 p-3 rounded-lg bg-brand-tint/60 border border-brand-border flex items-center justify-between">
-                <span class="text-xs text-brand-body">Lead Conversion Lift</span>
-                <span class="font-mono text-sm font-bold text-brand-teal">+44% In Q1</span>
+              <div class="mt-4 p-2.5 rounded bg-slate-50 border border-slate-200 text-xs">
+                <span class="text-[10px] font-mono text-slate-400 uppercase font-semibold">Operational Metric:</span>
+                <p class="text-emerald-700 font-semibold text-[11px] mt-0.5">&lt; 3-min automated fulfillment & zero
+                  contact loss</p>
               </div>
             </div>
 
-            <!-- Card footer with action button -->
-            <div class="p-4 bg-brand-tint/30 border-t border-brand-border/60 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-brand-body">app.speedlead.build</span>
-              <a href="https://example.com" target="_blank" rel="noopener noreferrer"
-                class="px-3 py-1.5 rounded-lg bg-white hover:bg-brand-primary hover:text-white text-xs font-mono text-brand-heading border border-brand-border transition-all flex items-center gap-1.5 shadow-sm">
-                <span>View Live Setup</span>
+            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="openPreviewModal('live-functionally')"
+                class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                <i class="fa-solid fa-eye text-xs"></i>
+                <span>Open Preview</span>
+              </button>
+              <a href="https://go.livefunctionally.com/metabolic-flex-reset-tracker--962989" target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-semibold text-slate-700 hover:text-slate-900 flex items-center gap-1">
+                <span>Visit Live URL</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
             </div>
           </div>
 
-          <!-- Build Card 2 -->
-          <div
-            class="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="p-6">
-              <div class="flex items-center justify-between text-xs font-mono text-brand-body mb-4">
-                <span class="px-2.5 py-1 rounded bg-brand-tint border border-brand-primary/30 text-brand-primary">
-                  <i class="fa-solid fa-robot text-[10px]"></i> Autonomous AI
+          <!-- Funnel 2 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold uppercase">
+                  Custom 404 Recovery
                 </span>
-                <span>Real Estate FinTech</span>
+                <span class="text-[10px] font-mono text-emerald-600 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Production
+                </span>
               </div>
 
-              <h3 class="text-lg font-bold text-brand-heading">Multi-Source Valuation AI Portal</h3>
-              <p class="text-xs text-brand-body mt-2 leading-relaxed">
-                Custom portal capturing property data, generating 12-page financial projections via OpenAI GPT-4o, and
-                syncing dynamic PDFs into Google Drive & CRM.
+              <div onclick="openPreviewModal('vision-carthage')"
+                class="relative aspect-video rounded-lg overflow-hidden bg-slate-100 border border-slate-200 mb-3.5 cursor-pointer group">
+                <img src="assets/gifs/custom-404-page-vision-carthage.gif"
+                  data-fallback="assets/images/site-previews/custom-404-page-vision-carthage.png"
+                  onerror="if(this.src && !this.src.includes(this.dataset.fallback)){ this.src=this.dataset.fallback; } else { this.src='https://placehold.co/600x340/FFFFFF/1E293B?text=Vision+Carthage+404'; }"
+                  alt="Vision Carthage Custom 404 Preview"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="absolute inset-0 bg-slate-900/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span
+                    class="px-3 py-1 rounded bg-white text-slate-800 text-xs font-semibold shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-play text-indigo-600 text-xs"></i>
+                    <span>Preview GIF</span>
+                  </span>
+                </div>
+              </div>
+
+              <h3 class="text-sm font-bold text-slate-900 leading-snug">
+                Vision Carthage Interactive 404 Recovery Experience
+              </h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Garden-themed error page featuring interactive JavaScript flower-planting animations and fast
+                redirection links.
               </p>
 
-              <!-- Architecture Badges -->
-              <div class="mt-5 flex flex-wrap gap-1.5">
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Next.js</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Make
-                  Router</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">GPT-4o
-                  Vision</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">DocuSign
-                  API</span>
-              </div>
-
-              <!-- Metric highlight -->
-              <div
-                class="mt-5 p-3 rounded-lg bg-brand-tint/60 border border-brand-border flex items-center justify-between">
-                <span class="text-xs text-brand-body">Doc Generation Time</span>
-                <span class="font-mono text-sm font-bold text-brand-primary">28 Sec (Was 3 Hrs)</span>
+              <div class="mt-4 p-2.5 rounded bg-slate-50 border border-slate-200 text-xs">
+                <span class="text-[10px] font-mono text-slate-400 uppercase font-semibold">Operational Metric:</span>
+                <p class="text-indigo-700 font-semibold text-[11px] mt-0.5">100% visitor retention path with responsive
+                  fallback</p>
               </div>
             </div>
 
-            <!-- Card footer with action button -->
-            <div class="p-4 bg-brand-tint/30 border-t border-brand-border/60 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-brand-body">portal.equityengine.io</span>
-              <a href="https://example.com" target="_blank" rel="noopener noreferrer"
-                class="px-3 py-1.5 rounded-lg bg-white hover:bg-brand-primary hover:text-white text-xs font-mono text-brand-heading border border-brand-border transition-all flex items-center gap-1.5 shadow-sm">
-                <span>View Live Setup</span>
+            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="openPreviewModal('vision-carthage')"
+                class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                <i class="fa-solid fa-eye text-xs"></i>
+                <span>Open Preview</span>
+              </button>
+              <a href="https://www.visioncarthage.org/page-not-found" target="_blank" rel="noopener noreferrer"
+                class="text-xs font-semibold text-slate-700 hover:text-slate-900 flex items-center gap-1">
+                <span>Visit Live URL</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
             </div>
           </div>
 
-          <!-- Build Card 3 -->
-          <div
-            class="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between shadow-sm">
-            <div class="p-6">
-              <div class="flex items-center justify-between text-xs font-mono text-brand-body mb-4">
-                <span class="px-2.5 py-1 rounded bg-brand-tint border border-brand-border text-brand-heading">
-                  <i class="fa-solid fa-bolt text-[10px] text-brand-primary"></i> High-Ticket Funnel
+          <!-- Funnel 3 -->
+          <div class="admin-card p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 font-bold uppercase">
+                  Wealth Consulting
                 </span>
-                <span>Consulting Agency</span>
+                <span class="text-[10px] font-mono text-amber-600 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> In Staging
+                </span>
               </div>
 
-              <h3 class="text-lg font-bold text-brand-heading">GoHighLevel Omnichannel Pipeline</h3>
-              <p class="text-xs text-brand-body mt-2 leading-relaxed">
-                Full-funnel implementation featuring interactive qualification quizzes, smart calendar re-booking logic,
-                and customized video messaging fallbacks.
+              <div onclick="openPreviewModal('freedom-bankers')"
+                class="relative aspect-video rounded-lg overflow-hidden bg-slate-100 border border-slate-200 mb-3.5 cursor-pointer group">
+                <img src="assets/gifs/freedom-bankers.gif"
+                  data-fallback="assets/images/site-previews/freedom-bankers.png"
+                  onerror="if(this.src && !this.src.includes(this.dataset.fallback)){ this.src=this.dataset.fallback; } else { this.src='https://placehold.co/600x340/FFFFFF/1E293B?text=FreedomBankers+Preview'; }"
+                  alt="FreedomBankers Funnel Preview"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="absolute inset-0 bg-slate-900/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span
+                    class="px-3 py-1 rounded bg-white text-slate-800 text-xs font-semibold shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-play text-indigo-600 text-xs"></i>
+                    <span>Preview GIF</span>
+                  </span>
+                </div>
+              </div>
+
+              <h3 class="text-sm font-bold text-slate-900 leading-snug">
+                FreedomBankers Infinite Banking Client Funnel
+              </h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Multi-page wealth acquisition system with educational triad frameworks and automated calendar booking
+                pipelines.
               </p>
 
-              <!-- Architecture Badges -->
-              <div class="mt-5 flex flex-wrap gap-1.5">
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">GoHighLevel</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Cal.com
-                  API</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Postmark</span>
-                <span
-                  class="px-2 py-0.5 rounded bg-brand-tint text-[10px] font-mono text-brand-heading border border-brand-border">Stripe
-                  Billing</span>
-              </div>
-
-              <!-- Metric highlight -->
-              <div
-                class="mt-5 p-3 rounded-lg bg-brand-tint/60 border border-brand-border flex items-center justify-between">
-                <span class="text-xs text-brand-body">Show-Up Rate Boost</span>
-                <span class="font-mono text-sm font-bold text-brand-primary">58% → 84%</span>
+              <div class="mt-4 p-2.5 rounded bg-slate-50 border border-slate-200 text-xs">
+                <span class="text-[10px] font-mono text-slate-400 uppercase font-semibold">Operational Metric:</span>
+                <p class="text-amber-700 font-semibold text-[11px] mt-0.5">End-to-end automated onboarding & blueprint
+                  scheduling</p>
               </div>
             </div>
 
-            <!-- Card footer with action button -->
-            <div class="p-4 bg-brand-tint/30 border-t border-brand-border/60 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-brand-body">consulting.scaleops.co</span>
-              <a href="https://example.com" target="_blank" rel="noopener noreferrer"
-                class="px-3 py-1.5 rounded-lg bg-white hover:bg-brand-primary hover:text-white text-xs font-mono text-brand-heading border border-brand-border transition-all flex items-center gap-1.5 shadow-sm">
-                <span>View Live Setup</span>
+            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button onclick="openPreviewModal('freedom-bankers')"
+                class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                <i class="fa-solid fa-eye text-xs"></i>
+                <span>Open Preview</span>
+              </button>
+              <a href="https://links.freedombankers.com/preview/TyA9oD48lHkyVwpTYLqb" target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-semibold text-slate-700 hover:text-slate-900 flex items-center gap-1">
+                <span>Preview URL</span>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
 
-    <section id="roi-calculator" class="py-20 bg-brand-tint/30 border-t border-brand-border/60">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section: Operations ROI Calculator -->
+    <section id="roi-calculator" class="py-16 border-b border-slate-200 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="glass-panel rounded-3xl p-6 sm:p-10 border-brand-border relative overflow-hidden shadow-md">
-          <div class="absolute -right-16 -bottom-16 w-80 h-80 glow-radial-teal pointer-events-none"></div>
-
-          <div class="max-w-2xl mb-8">
-            <span class="font-mono text-xs text-brand-teal uppercase tracking-wider font-semibold">Interactive ROI
-              Calculator</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-heading mt-1">Quantify Your Operational
-              Inefficiency</h2>
-            <p class="text-xs sm:text-sm text-brand-body mt-2">
-              See what manual copy-pasting, lead distribution, and administrative tasks are truly costing your company
-              every year.
-            </p>
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <div
+            class="text-xs font-mono font-bold tracking-wider uppercase text-emerald-600 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-calculator"></i>
+            <span>RESOURCE ALLOCATION MODEL</span>
           </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+            Calculate Administrative Hours & ROI Reclaimed
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            Estimate direct payroll capital recovered by transitioning manual CRM follow-ups and data entry into
+            autonomous pipelines.
+          </p>
+        </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="admin-card p-6 sm:p-8 shadow-admin-elevated">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
-            <!-- Controls (Left 7) -->
-            <div class="lg:col-span-7 space-y-6">
-              <!-- Slider 1: Team members -->
+            <!-- Input Sliders (Left) -->
+            <div class="space-y-5">
+
+              <!-- Slider 1 -->
               <div>
-                <div class="flex justify-between items-center text-xs font-mono mb-2">
-                  <span class="text-brand-heading">Team Members Doing Repetitive Data Entry:</span>
-                  <span id="teamSizeValue" class="text-brand-teal font-bold text-sm">4 people</span>
+                <div class="flex justify-between text-xs font-semibold mb-1.5">
+                  <span class="text-slate-700">Team Members in Ops / SDR:</span>
+                  <span id="teamCountDisplay" class="font-mono text-indigo-600 font-bold">5 people</span>
                 </div>
-                <input id="teamSizeSlider" type="range" min="1" max="25" value="4"
-                  class="w-full h-2 bg-brand-badge rounded-lg appearance-none cursor-pointer accent-brand-teal">
-                <div class="flex justify-between text-[10px] font-mono text-brand-body mt-1">
+                <input id="teamInput" type="range" min="1" max="50" value="5"
+                  class="w-full accent-indigo-600 cursor-pointer" oninput="calculateROI()">
+                <div class="flex justify-between text-[10px] font-mono text-slate-400 mt-0.5">
                   <span>1 person</span>
-                  <span>12 people</span>
-                  <span>25 people</span>
+                  <span>50 people</span>
                 </div>
               </div>
 
-              <!-- Slider 2: Hours per week -->
+              <!-- Slider 2 -->
               <div>
-                <div class="flex justify-between items-center text-xs font-mono mb-2">
-                  <span class="text-brand-heading">Hours Lost Per Person Per Week:</span>
-                  <span id="hoursPerWeekValue" class="text-brand-primary font-bold text-sm">8 hours / wk</span>
+                <div class="flex justify-between text-xs font-semibold mb-1.5">
+                  <span class="text-slate-700">Manual Hours / Person / Week:</span>
+                  <span id="hoursCountDisplay" class="font-mono text-indigo-600 font-bold">12 hours</span>
                 </div>
-                <input id="hoursSlider" type="range" min="2" max="20" value="8"
-                  class="w-full h-2 bg-brand-badge rounded-lg appearance-none cursor-pointer accent-brand-primary">
-                <div class="flex justify-between text-[10px] font-mono text-brand-body mt-1">
+                <input id="hoursInput" type="range" min="2" max="30" value="12"
+                  class="w-full accent-indigo-600 cursor-pointer" oninput="calculateROI()">
+                <div class="flex justify-between text-[10px] font-mono text-slate-400 mt-0.5">
                   <span>2 hrs</span>
-                  <span>10 hrs</span>
-                  <span>20 hrs</span>
+                  <span>30 hrs</span>
                 </div>
               </div>
 
-              <!-- Slider 3: Avg Hourly Rate -->
+              <!-- Slider 3 -->
               <div>
-                <div class="flex justify-between items-center text-xs font-mono mb-2">
-                  <span class="text-brand-heading">Average Blended Hourly Cost ($):</span>
-                  <span id="hourlyCostValue" class="text-brand-primary font-bold text-sm">$45 / hr</span>
+                <div class="flex justify-between text-xs font-semibold mb-1.5">
+                  <span class="text-slate-700">Average Hourly Loaded Wage:</span>
+                  <span id="wageDisplay" class="font-mono text-indigo-600 font-bold">$35 / hr</span>
                 </div>
-                <input id="rateSlider" type="range" min="20" max="150" step="5" value="45"
-                  class="w-full h-2 bg-brand-badge rounded-lg appearance-none cursor-pointer accent-brand-primary">
-                <div class="flex justify-between text-[10px] font-mono text-brand-body mt-1">
-                  <span>$20/hr</span>
-                  <span>$85/hr</span>
+                <input id="wageInput" type="range" min="15" max="150" step="5" value="35"
+                  class="w-full accent-indigo-600 cursor-pointer" oninput="calculateROI()">
+                <div class="flex justify-between text-[10px] font-mono text-slate-400 mt-0.5">
+                  <span>$15/hr</span>
                   <span>$150/hr</span>
                 </div>
               </div>
+
             </div>
 
-            <!-- Result Cards (Right 5) -->
-            <div
-              class="lg:col-span-5 bg-white rounded-2xl p-6 border border-brand-border shadow-md flex flex-col justify-between">
-              <div>
-                <span class="text-[11px] font-mono text-brand-body uppercase">Estimated Annual Reclaimable
-                  Capital</span>
-                <div id="annualSavingsText" class="text-3xl sm:text-4xl font-extrabold text-brand-teal font-mono mt-2">
-                  $74,880</div>
-                <p class="text-xs text-brand-body mt-1">Direct salary drain saved every 12 months.</p>
-
-                <div class="mt-6 pt-5 border-t border-brand-border/60 space-y-3">
-                  <div class="flex items-center justify-between text-xs">
-                    <span class="text-brand-body">Productive Hours Recovered:</span>
-                    <span id="annualHoursText" class="font-mono font-bold text-brand-heading">1,664 hrs/yr</span>
-                  </div>
-                  <div class="flex items-center justify-between text-xs">
-                    <span class="text-brand-body">Implementation Payback:</span>
-                    <span class="font-mono font-bold text-brand-teal">&lt; 28 Days</span>
-                  </div>
+            <!-- Computation Output (Right) -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center space-y-3">
+              <span class="text-[11px] font-mono uppercase text-slate-500 font-bold tracking-wider">
+                ANNUAL CAPITAL RECOVERED
+              </span>
+              <div id="annualSavings" class="text-4xl sm:text-5xl font-black text-slate-900 font-mono tracking-tight">
+                $109,200
+              </div>
+              <div class="flex items-center justify-center gap-3 pt-2 text-xs font-mono text-slate-600">
+                <div class="px-2.5 py-1 bg-white border border-slate-200 rounded">
+                  <strong id="annualHours" class="text-slate-900">3,120</strong> Hours Saved / Yr
+                </div>
+                <div class="px-2.5 py-1 bg-white border border-slate-200 rounded text-emerald-700 font-bold">
+                  &gt; 85% Error Drop
                 </div>
               </div>
 
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Pipeline%20Automation%20Inquiry"
-                target="_blank" rel="noopener noreferrer"
-                class="mt-6 w-full py-2.5 rounded-xl bg-brand-primary hover:bg-brand-hover text-white font-bold text-xs text-center transition-all flex items-center justify-center gap-2 shadow-md shadow-brand-primary/25">
-                <i class="fa-brands fa-google text-xs"></i>
-                <span>Automate This Pipeline via Gmail →</span>
-              </a>
+              <div class="pt-4">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Automation%20ROI%20Implementation%20Consultation"
+                  target="_blank" rel="noopener noreferrer"
+                  class="w-full inline-block py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-all shadow-sm">
+                  Reclaim These Operational Hours →
+                </a>
+              </div>
             </div>
 
           </div>
@@ -848,231 +1620,567 @@
       </div>
     </section>
 
-    <section id="stack" class="py-20 border-t border-brand-border/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center max-w-2xl mx-auto mb-14">
-          <span class="text-xs font-mono text-brand-primary uppercase tracking-wider font-semibold">Production
-            Toolset</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-heading mt-1">Enterprise-Grade Stack Matrix</h2>
-          <p class="text-xs sm:text-sm text-brand-body mt-2">
-            Battle-tested frameworks chosen for uptime, webhook execution speed, and high rate limits.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-
-          <!-- Category 1: Make.com -->
-          <div class="glass-panel p-4 rounded-xl text-center glass-panel-hover shadow-sm">
-            <div
-              class="w-10 h-10 mx-auto rounded-lg bg-brand-tint text-brand-primary flex items-center justify-center text-lg mb-2">
-              <i class="fa-solid fa-code-branch"></i>
-            </div>
-            <h4 class="text-xs font-bold text-brand-heading">Make.com</h4>
-            <p class="text-[10px] font-mono text-brand-body mt-1">Enterprise Partner</p>
-          </div>
-
-          <!-- Category 2: n8n -->
-          <div class="glass-panel p-4 rounded-xl text-center glass-panel-hover shadow-sm">
-            <div
-              class="w-10 h-10 mx-auto rounded-lg bg-brand-tint text-brand-primary flex items-center justify-center text-lg mb-2">
-              <i class="fa-solid fa-server"></i>
-            </div>
-            <h4 class="text-xs font-bold text-brand-heading">n8n Self-Hosted</h4>
-            <p class="text-[10px] font-mono text-brand-body mt-1">Docker & VPS Setup</p>
-          </div>
-
-          <!-- Category 3: HubSpot -->
-          <div class="glass-panel p-4 rounded-xl text-center glass-panel-hover shadow-sm">
-            <div
-              class="w-10 h-10 mx-auto rounded-lg bg-brand-tint text-brand-primary flex items-center justify-center text-lg mb-2">
-              <i class="fa-solid fa-hubspot"></i>
-            </div>
-            <h4 class="text-xs font-bold text-brand-heading">HubSpot CRM</h4>
-            <p class="text-[10px] font-mono text-brand-body mt-1">Ops Hub & Objects</p>
-          </div>
-
-          <!-- Category 4: GoHighLevel -->
-          <div class="glass-panel p-4 rounded-xl text-center glass-panel-hover shadow-sm">
-            <div
-              class="w-10 h-10 mx-auto rounded-lg bg-brand-tint text-brand-teal flex items-center justify-center text-lg mb-2">
-              <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <h4 class="text-xs font-bold text-brand-heading">GoHighLevel</h4>
-            <p class="text-[10px] font-mono text-brand-body mt-1">SaaS Architect</p>
-          </div>
-
-          <!-- Category 5: OpenAI & Claude -->
-          <div class="glass-panel p-4 rounded-xl text-center glass-panel-hover shadow-sm">
-            <div
-              class="w-10 h-10 mx-auto rounded-lg bg-brand-tint text-brand-primary flex items-center justify-center text-lg mb-2">
-              <i class="fa-solid fa-microchip"></i>
-            </div>
-            <h4 class="text-xs font-bold text-brand-heading">LLM APIs</h4>
-            <p class="text-[10px] font-mono text-brand-body mt-1">Claude 3.5 & GPT-4o</p>
-          </div>
-
-          <!-- Category 6: Postgres / Webhooks -->
-          <div class="glass-panel p-4 rounded-xl text-center glass-panel-hover shadow-sm">
-            <div
-              class="w-10 h-10 mx-auto rounded-lg bg-brand-tint text-brand-teal flex items-center justify-center text-lg mb-2">
-              <i class="fa-solid fa-database"></i>
-            </div>
-            <h4 class="text-xs font-bold text-brand-heading">Supabase / SQL</h4>
-            <p class="text-[10px] font-mono text-brand-body mt-1">Vector Store & DB</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="audit-section" class="py-20 bg-brand-tint/40 border-t border-brand-border/60 relative">
+    <!-- Section: Dispatch & Direct Contact Gateway -->
+    <section id="dispatch-hub" class="py-16 bg-slate-50">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="glass-panel rounded-3xl p-6 sm:p-10 border-brand-border shadow-md relative">
-
-          <div class="text-center max-w-xl mx-auto mb-8">
-            <span class="text-xs font-mono text-brand-teal uppercase tracking-wider font-semibold">Zero Cost • Direct
-              Contact</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-heading mt-1">Get in Touch Directly</h2>
-            <p class="text-xs sm:text-sm text-brand-body mt-2">
-              Ready to eliminate operational bottlenecks? Reach out directly via Gmail to discuss your automation and
-              CRM architecture needs.
-            </p>
+        <div class="admin-card p-8 sm:p-10 text-center shadow-admin-elevated">
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-semibold mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>DIRECT ADMINISTRATIVE INBOX</span>
           </div>
 
-          <!-- Direct Gmail Primary CTA -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Project%20Inquiry%20%7C%20Systems%20Architecture%20%26%20AI"
-              target="_blank" rel="noopener noreferrer"
-              class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-primary via-brand-accent to-brand-hover text-white font-semibold text-sm tracking-wide shadow-lg shadow-brand-primary/25 hover:opacity-95 hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-3">
-              <i class="fa-brands fa-google text-base"></i>
-              <span>Compose in Gmail (christinegaylo@gmail.com)</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-75"></i>
-            </a>
-            <a href="mailto:christinegaylo@gmail.com?subject=Project%20Inquiry%20%7C%20Systems%20Architecture"
-              class="w-full sm:w-auto px-5 py-4 rounded-xl glass-panel hover:bg-brand-tint text-brand-heading font-medium text-xs text-center transition-all flex items-center justify-center gap-2 shadow-sm">
-              <i class="fa-regular fa-envelope text-brand-primary"></i>
-              <span>Default Mail Client</span>
-            </a>
-          </div>
-
-          <!-- Interactive Audit Checklist -->
-          <div class="space-y-3 mb-8">
-            <label
-              class="glass-panel p-3.5 rounded-xl flex items-center space-x-3 cursor-pointer hover:border-brand-primary transition-colors shadow-sm">
-              <input type="checkbox" checked
-                class="audit-check w-4 h-4 rounded bg-white border-brand-border text-brand-primary focus:ring-0">
-              <span class="text-xs sm:text-sm text-brand-heading">Inbound leads take more than 5 minutes to receive a
-                personalized response.</span>
-            </label>
-
-            <label
-              class="glass-panel p-3.5 rounded-xl flex items-center space-x-3 cursor-pointer hover:border-brand-primary transition-colors shadow-sm">
-              <input type="checkbox" checked
-                class="audit-check w-4 h-4 rounded bg-white border-brand-border text-brand-primary focus:ring-0">
-              <span class="text-xs sm:text-sm text-brand-heading">Duplicate contacts and messy lifecycle stages in
-                HubSpot or GoHighLevel.</span>
-            </label>
-
-            <label
-              class="glass-panel p-3.5 rounded-xl flex items-center space-x-3 cursor-pointer hover:border-brand-primary transition-colors shadow-sm">
-              <input type="checkbox"
-                class="audit-check w-4 h-4 rounded bg-white border-brand-border text-brand-primary focus:ring-0">
-              <span class="text-xs sm:text-sm text-brand-heading">Frequent Zapier/Make execution failures causing lost
-                customer data.</span>
-            </label>
-
-            <label
-              class="glass-panel p-3.5 rounded-xl flex items-center space-x-3 cursor-pointer hover:border-brand-primary transition-colors shadow-sm">
-              <input type="checkbox"
-                class="audit-check w-4 h-4 rounded bg-white border-brand-border text-brand-primary focus:ring-0">
-              <span class="text-xs sm:text-sm text-brand-heading">Need AI agent to qualify RFP inquiries or support
-                tickets automatically.</span>
-            </label>
-          </div>
-
-          <!-- Booking & Contact Submission Form -->
-          <form id="auditForm" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-mono text-brand-body mb-1">Your Name</label>
-                <input id="contactName" type="text" placeholder="Sarah Jenkins"
-                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-brand-border text-brand-heading text-xs focus:outline-none focus:border-brand-primary shadow-sm">
-              </div>
-              <div>
-                <label class="block text-xs font-mono text-brand-body mb-1">Work Email</label>
-                <input id="contactEmail" type="email" placeholder="sarah@company.com"
-                  class="w-full px-4 py-2.5 rounded-xl bg-white border border-brand-border text-brand-heading text-xs focus:outline-none focus:border-brand-primary shadow-sm">
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-mono text-brand-body mb-1">Current Tech Stack in Use</label>
-              <input id="contactStack" type="text" placeholder="e.g. HubSpot, Make.com, Stripe, Airtable"
-                class="w-full px-4 py-2.5 rounded-xl bg-white border border-brand-border text-brand-heading text-xs focus:outline-none focus:border-brand-primary shadow-sm">
-            </div>
-
-            <button type="submit"
-              class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-primary via-brand-accent to-brand-hover text-white font-semibold text-xs tracking-wide uppercase transition-all shadow-md shadow-brand-primary/25 hover:opacity-95 flex items-center justify-center gap-2">
-              <i class="fa-brands fa-google"></i>
-              <span>Send Systems Brief via Gmail to christinegaylo@gmail.com</span>
-            </button>
-          </form>
-
-          <p class="text-[11px] font-mono text-center text-brand-body mt-4">
-            Clicking will open Gmail pre-populated with your selected friction points directly addressed to
-            christinegaylo@gmail.com.
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            Initiate System Consultation with Christine Gaylo
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-lg mx-auto">
+            Available for GoHighLevel pipeline restructuring, CloseBot/Twilio setups, custom webhook integrations, or
+            operations administration contracts.
           </p>
 
+          <!-- Pre-filled Inquiry Preset Cards -->
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=GoHighLevel%20%26%20CloseBot%20Automation%20Project&body=Hi%20Christine,%0A%0AI'm%20reaching%20out%20to%20discuss%20our%20GoHighLevel%20pipelines%20and%20automated%20intake%20setup.%20Here%20are%20the%20details:%0A"
+              target="_blank" rel="noopener noreferrer"
+              class="p-3.5 rounded-lg bg-slate-50 hover:bg-indigo-50/50 border border-slate-200 hover:border-indigo-300 transition-all group">
+              <i class="fa-solid fa-robot text-indigo-600 text-base mb-1.5"></i>
+              <div class="text-xs font-bold text-slate-900">GHL & Voice AI</div>
+              <div class="text-[10px] font-mono text-slate-500 mt-1">Pre-fill Gmail Draft →</div>
+            </a>
+
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Make.com%20%2F%20n8n%20Webhook%20Integration%20Inquiry&body=Hi%20Christine,%0A%0AWe%20require%20custom%20webhook%20middleware%20and%20data%20integration.%20Here%20is%20our%20current%20platform%20architecture:%0A"
+              target="_blank" rel="noopener noreferrer"
+              class="p-3.5 rounded-lg bg-slate-50 hover:bg-emerald-50/50 border border-slate-200 hover:border-emerald-300 transition-all group">
+              <i class="fa-solid fa-arrows-split-up-and-left text-emerald-600 text-base mb-1.5"></i>
+              <div class="text-xs font-bold text-slate-900">iPaaS & Webhooks</div>
+              <div class="text-[10px] font-mono text-slate-500 mt-1">Pre-fill Gmail Draft →</div>
+            </a>
+
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Executive%20Operations%20%26%20System%20Audit%20Inquiry&body=Hi%20Christine,%0A%0AWe%20would%20like%20to%20conduct%20a%20full%20audit%20of%20our%20CRM%20systems%20and%20SOPs.%20Let's%20discuss%20timelines:%0A"
+              target="_blank" rel="noopener noreferrer"
+              class="p-3.5 rounded-lg bg-slate-50 hover:bg-blue-50/50 border border-slate-200 hover:border-blue-300 transition-all group">
+              <i class="fa-solid fa-clipboard-check text-blue-600 text-base mb-1.5"></i>
+              <div class="text-xs font-bold text-slate-900">Operations Audit</div>
+              <div class="text-[10px] font-mono text-slate-500 mt-1">Pre-fill Gmail Draft →</div>
+            </a>
+          </div>
+
+          <!-- Master Action Hub -->
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Executive%20Systems%20Architecture%20Inquiry"
+              target="_blank" rel="noopener noreferrer"
+              class="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-sm flex items-center gap-2 transition-all">
+              <i class="fa-regular fa-envelope text-xs"></i>
+              <span>Compose in Gmail (christinegaylo@gmail.com)</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-80"></i>
+            </a>
+
+            <button onclick="copyEmailToClipboard()"
+              class="px-5 py-3 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-mono text-xs flex items-center gap-2 transition-all">
+              <i class="fa-regular fa-copy text-indigo-600"></i>
+              <span>Copy Email</span>
+            </button>
+          </div>
+
+          <p class="text-[11px] font-mono text-slate-400 mt-5">
+            Guaranteed acknowledgment within 24 business hours • NDAs accepted prior to system audits
+          </p>
         </div>
+
       </div>
     </section>
   </main>
 
-  <footer class="py-12 border-t border-brand-border/60 bg-white text-brand-body text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center space-x-3">
-        <div
-          class="w-7 h-7 rounded bg-brand-primary flex items-center justify-center text-white font-mono font-bold text-xs">
-          CG
+  <!-- Admin Master Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-slate-800">
+
+        <!-- Identity Column (5 cols) -->
+        <div class="md:col-span-5 space-y-3">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 rounded bg-indigo-600 text-white flex items-center justify-center font-mono font-bold text-xs">
+              CG
+            </div>
+            <div>
+              <div class="text-white font-bold text-sm">Christine Gaylo</div>
+              <div class="text-slate-400 text-[11px]">Executive Operations & GoHighLevel Level 2 Specialist</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            Translating complex technical bottlenecks into organized operations, reliable CRM workflows, and autonomous
+            business systems.
+          </p>
+          <div class="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Available for Contract & Retainer Roles
+          </div>
         </div>
-        <span class="font-mono text-brand-heading font-medium">Christine Gaylo // System Architecture</span>
+
+        <!-- Navigation Links (4 cols) -->
+        <div class="md:col-span-4 space-y-2">
+          <div class="text-white font-mono font-bold uppercase text-[11px] mb-3">Portal Navigation</div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <a href="#about-me" class="hover:text-white transition-colors">Executive Bio</a>
+            <a href="#core-capabilities" class="hover:text-white transition-colors">Capabilities</a>
+            <a href="#tech-matrix" class="hover:text-white transition-colors">Tech Matrix</a>
+            <a href="#loom-walkthroughs" class="hover:text-white transition-colors">System Audits</a>
+            <a href="#testimonials" class="hover:text-white transition-colors">Client Ratings</a>
+            <a href="#live-builds" class="hover:text-white transition-colors">Deployments</a>
+            <a href="#roi-calculator" class="hover:text-white transition-colors">ROI Model</a>
+            <a href="#dispatch-hub" class="hover:text-white transition-colors">Contact Admin</a>
+          </div>
+        </div>
+
+        <!-- Contact Column (3 cols) -->
+        <div class="md:col-span-3 space-y-2.5">
+          <div class="text-white font-mono font-bold uppercase text-[11px] mb-3">Admin Channel</div>
+          <a href="mailto:christinegaylo@gmail.com" class="text-indigo-400 hover:text-indigo-300 font-mono block">
+            christinegaylo@gmail.com
+          </a>
+          <button onclick="copyEmailToClipboard()"
+            class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition-colors">
+            <i class="fa-regular fa-copy text-xs"></i>
+            <span>Copy Address</span>
+          </button>
+        </div>
+
       </div>
 
-      <div class="flex items-center space-x-6 text-brand-body font-mono text-xs">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=Inquiry%20via%20Portfolio"
-          target="_blank" rel="noopener noreferrer"
-          class="hover:text-brand-primary transition-colors flex items-center gap-1.5">
-          <i class="fa-brands fa-google text-xs"></i>
-          <span>christinegaylo@gmail.com</span>
-        </a>
-        <button id="copyEmailBtn"
-          class="hover:text-brand-primary transition-colors flex items-center gap-1 text-[11px] text-brand-body hover:text-brand-heading">
-          <i class="fa-regular fa-copy"></i>
-          <span>Copy</span>
-        </button>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-          class="hover:text-brand-primary transition-colors">LinkedIn</a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-          class="hover:text-brand-primary transition-colors">GitHub</a>
+      <div
+        class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-mono">
+        <div>
+          &copy; 2026 Christine Gaylo. All rights reserved.
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Enterprise Admin Security</span>
+          <span>•</span>
+          <span>Encrypted Gateway</span>
+        </div>
       </div>
 
-      <div class="font-mono text-[11px] text-brand-teal flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
-        <span>System Health: 100% Operational</span>
-      </div>
     </div>
   </footer>
 
+  <!-- Interactive Visual Preview Modal (Preserves Exact Local Asset Paths) -->
+  <div id="previewModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
+    role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="modalBox"
+      class="bg-white border border-slate-200 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-admin-modal transform scale-95 transition-all duration-300">
+
+      <!-- Modal Header -->
+      <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="modalBadge"
+            class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold uppercase">
+            Preview Mode
+          </span>
+          <span id="modalStatus" class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Verified Live
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer"
+            class="px-2.5 py-1 rounded bg-white hover:bg-slate-100 border border-slate-200 text-xs font-medium text-slate-700 flex items-center gap-1.5 transition-colors">
+            <span>Open URL</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+          <button onclick="closePreviewModal()" aria-label="Close"
+            class="w-7 h-7 rounded hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Content Body -->
+      <div class="overflow-y-auto p-5 sm:p-6 space-y-4">
+        <div
+          class="rounded-lg overflow-hidden bg-slate-900 border border-slate-200 flex items-center justify-center min-h-[220px]">
+          <img id="modalMediaImage" src="" alt="Walkthrough Preview"
+            class="w-full h-auto max-h-[55vh] object-contain mx-auto" />
+        </div>
+
+        <div class="space-y-2.5">
+          <h3 id="modalTitle" class="text-base sm:text-lg font-bold text-slate-900">Project Title</h3>
+          <p id="modalDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed">System description.</p>
+
+          <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+            <div class="text-[10px] font-mono uppercase text-slate-400 font-bold">Operational Metric</div>
+            <div id="modalImpact" class="text-xs font-mono font-semibold text-emerald-700 mt-0.5">Impact spec</div>
+          </div>
+
+          <div>
+            <div class="text-[10px] font-mono uppercase text-slate-400 font-bold mb-1">Architecture Tags</div>
+            <div id="modalTags" class="flex flex-wrap gap-1.5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div
+        class="px-5 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs text-slate-500 font-mono">
+        <span>Admin Verification Portal</span>
+        <button onclick="closePreviewModal()" class="text-indigo-600 hover:text-indigo-800 font-semibold">
+          Dismiss (Esc)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Admin Application Logic -->
   <script>
-    // Toast notification trigger helper
+    // Navigation Drawer Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenuDropdown');
+      const icon = document.getElementById('mobileMenuIcon');
+      if (!menu) return;
+
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        menu.classList.add('hidden');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    }
+
+    // Video Registry Data Model (Local paths preserved)
+    const videoData = {
+      'smart-reminders': {
+        title: 'Bypassing Platform Limits: Smart Appointment Reminders & Custom Notification Sequences',
+        desc: 'A client walkthrough demonstrating a custom appointment workflow built to bypass native platform limitations. Explore how the system filters tags, evaluates booking days, and uses custom code to execute precise reminder sequences.',
+        videoSrc: 'assets/videos/bypassing-platform-limits-reminders.mp4',
+        badge: 'WORKFLOW AUTOMATION & CUSTOM CODE',
+        tag: 'Client Delivery',
+        logic: 'Dynamic day evaluation & custom JavaScript code execution',
+        stack: 'GoHighLevel • Custom Code Action • Tag Matrix • Twilio SMS',
+        outcome: 'Eliminated missed client consultations without rigid native scheduling constraints'
+      },
+      'recurring-events': {
+        title: 'Never Reschedule Manually: Zero-Touch Recurring Event Automation with Date Math',
+        desc: 'A client walkthrough demonstrating a recurring event automation workflow built to handle monthly networking meetups. Explore how the system uses custom values, advanced if-else conditions, and custom code to calculate future event dates, manage reminders, and automate the recurring schedule without manual updates.',
+        videoSrc: 'assets/videos/zero-touch-recurring-events.mp4',
+        badge: 'ADVANCED DATE COMPUTATION & CRM',
+        tag: 'Event Architecture',
+        logic: 'Automated monthly date calculation using custom JavaScript math',
+        stack: 'GoHighLevel • Custom Values • Conditional If/Else • Custom Code',
+        outcome: 'Saved 100% of monthly administrative prep time for recurring community meetups'
+      },
+      'voice-ai-tools': {
+        title: 'Deploying Production Voice AI: Custom Tool Invocation, Live Transfers & Failover Routing',
+        desc: 'Behind-the-scenes walkthrough breaking down a fully configured voice assistant. Learn how the setup integrates custom automation tools for messaging, extracts caller details, handles live call transfers, and manages flexible phone routing options for direct or backup availability.',
+        videoSrc: 'assets/videos/production-voice-ai-deployment.mp4',
+        badge: 'VOICE AI & TELEPHONY PIPELINES',
+        tag: 'Autonomous Agents',
+        logic: 'Real-time caller intent extraction, function calling, and dynamic phone failover',
+        stack: 'Voice AI Engine • Twilio Telephony • Webhook Tool Calls • Live Transfer Protocol',
+        outcome: 'Sub-60s autonomous inbound inquiry triage with automated warm transfer fallback'
+      },
+      'email-ai-parser': {
+        title: 'Flawless Inbound Email Parsing: Two-Workflow Webhook Architecture Powered by AI',
+        desc: 'A demonstration revealing how a multi-step setup cleanly captures and processes incoming messages. Discover how the system leverages artificial intelligence to extract data from email bodies, splits the process into two linked workflows using webhooks, and seamlessly creates updated contacts with custom fields.',
+        videoSrc: 'assets/videos/inbound-email-parsing-webhook.mp4',
+        badge: 'AI DATA EXTRACTION & DUAL WEBHOOKS',
+        tag: 'Data Pipeline',
+        logic: 'Unstructured email text parsing via LLM, decoupled webhook ingestion, and CRM custom mapping',
+        stack: 'Inbound Email Hooks • LLM Parsing Engine • Multi-Tier Webhooks • CRM Custom Fields',
+        outcome: 'Zero manual data entry; 100% unstructured lead payloads parsed into clean records'
+      },
+      'crm-mcp-claude': {
+        title: 'Connecting Claude to Your CRM via MCP Server: Token Refresh & Infinite Loop Fixes',
+        desc: 'Step inside a client support session troubleshooting and finalizing the integration between a CRM and an MCP server. Discover how Christine diagnoses a connection loop, refreshes configuration tokens, removes conflicting installations, and successfully verifies the setup so the AI can pull CRM data seamlessly.',
+        videoSrc: 'assets/videos/claude-mcp-crm-integration.mp4',
+        badge: 'SYSTEM INTEGRATION & MCP DEBUGGING',
+        tag: 'Support & Fix',
+        logic: 'Auth token handshake validation, conflict cleanup, and live MCP JSON tool verification',
+        stack: 'Claude Desktop • Model Context Protocol (MCP) • CRM APIs • JSON Auth Configs',
+        outcome: 'Successfully restored AI context pipeline; Claude directly querying live CRM data'
+      }
+    };
+
+    // Video Switcher for Local HTML5 MP4 Player
+    function switchVideo(videoKey, btnElement) {
+      const data = videoData[videoKey];
+      if (!data) return;
+
+      document.querySelectorAll('.video-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('bg-white', 'text-slate-700');
+      });
+      btnElement.classList.add('bg-indigo-600', 'text-white');
+      btnElement.classList.remove('bg-white', 'text-slate-700');
+
+      const videoPlayer = document.getElementById('walkthroughVideoPlayer');
+      const videoSource = document.getElementById('walkthroughVideoSource');
+
+      videoSource.src = data.videoSrc;
+      videoPlayer.load();
+
+      document.getElementById('videoPathLabel').textContent = `File: ${data.videoSrc}`;
+      document.getElementById('videoCategoryBadge').textContent = data.badge;
+      document.getElementById('videoTagBadge').textContent = data.tag;
+      document.getElementById('videoTitle').textContent = data.title;
+      document.getElementById('videoDesc').textContent = data.desc;
+      document.getElementById('videoLogicSpec').textContent = data.logic;
+      document.getElementById('videoStackSpec').textContent = data.stack;
+      document.getElementById('videoOutcomeSpec').textContent = data.outcome;
+    }
+
+    // Funnel Visual Preview Data Model
+    const funnelPreviewData = {
+      'live-functionally': {
+        title: '7-Day FLEX Reset Lead Magnet & Acquisition Funnel',
+        category: 'Functional Medicine & Wellness',
+        status: 'Production Live',
+        statusColor: 'text-emerald-700 border-emerald-200 bg-emerald-50',
+        url: 'https://go.livefunctionally.com/metabolic-flex-reset-tracker--962989',
+        gifSrc: 'assets/gifs/live-functionally-metabolic-flexibility.gif',
+        fallbackSrc: 'assets/images/site-previews/live-functionally-metabolic-flexibility.png',
+        desc: 'Doctor-led conversion system featuring instant PDF workbook delivery, automated confirmation sequences, and a 7-day functional tracking framework.',
+        impact: 'Instant 3-minute dispatch rate with automated baseline progress tracking',
+        tags: ['GoHighLevel', 'Funnel', 'Automated Email', 'SMS Triggers']
+      },
+      'vision-carthage': {
+        title: 'Vision Carthage Custom 404 Error & Recovery Funnel',
+        category: 'Interactive Custom 404 Page',
+        status: 'Production Live',
+        statusColor: 'text-indigo-700 border-indigo-200 bg-indigo-50',
+        url: 'https://www.visioncarthage.org/page-not-found',
+        gifSrc: 'assets/gifs/custom-404-page-vision-carthage.gif',
+        fallbackSrc: 'assets/images/site-previews/custom-404-page-vision-carthage.png',
+        desc: 'Engaging visitor recovery system featuring a garden-themed error layout, interactive JavaScript flower-planting animations, and quick links to local Carthage tours and resources.',
+        impact: '100% visitor retention path with interactive fallback navigation and direct contact integration',
+        tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive UI']
+      },
+      'freedom-bankers': {
+        title: 'FreedomBankers Infinite Banking Discovery & Lead Generation Funnel',
+        category: 'Financial Services & Consulting',
+        status: 'In Staging',
+        statusColor: 'text-amber-700 border-amber-200 bg-amber-50',
+        url: 'https://links.freedombankers.com/preview/TyA9oD48lHkyVwpTYLqb',
+        gifSrc: 'assets/gifs/freedom-bankers.gif',
+        fallbackSrc: 'assets/images/site-previews/freedom-bankers.png',
+        desc: 'Multi-page wealth strategy acquisition system featuring integrated blog content, educational triad frameworks, and step-by-step discovery call booking flows.',
+        impact: '100% structured onboarding path from educational discovery to custom financial blueprinting',
+        tags: ['GoHighLevel', 'Multi-Page Architecture', 'Calendar Integration', 'Lead Capture Forms']
+      }
+    };
+
+    // Open Visual Preview Modal
+    function openPreviewModal(key) {
+      const data = funnelPreviewData[key];
+      if (!data) return;
+
+      const modal = document.getElementById('previewModal');
+      const modalBox = document.getElementById('modalBox');
+      const mediaImg = document.getElementById('modalMediaImage');
+      const titleEl = document.getElementById('modalTitle');
+      const badgeEl = document.getElementById('modalBadge');
+      const descEl = document.getElementById('modalDesc');
+      const impactEl = document.getElementById('modalImpact');
+      const linkEl = document.getElementById('modalExternalLink');
+      const statusEl = document.getElementById('modalStatus');
+
+      if (!modal) return;
+
+      if (titleEl) titleEl.textContent = data.title;
+      if (badgeEl) badgeEl.textContent = data.category;
+      if (descEl) descEl.textContent = data.desc;
+      if (impactEl) impactEl.textContent = data.impact;
+      if (linkEl) linkEl.href = data.url;
+
+      if (statusEl) {
+        statusEl.className = `inline-flex items-center gap-1.5 text-[11px] font-mono px-2 py-0.5 rounded border ${data.statusColor}`;
+        statusEl.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${data.status.includes('Live') ? 'bg-emerald-500' : 'bg-amber-500'}"></span> ${data.status}`;
+      }
+
+      const tagsContainer = document.getElementById('modalTags');
+      if (tagsContainer) {
+        tagsContainer.innerHTML = '';
+        data.tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200';
+          span.textContent = tag;
+          tagsContainer.appendChild(span);
+        });
+      }
+
+      if (mediaImg) {
+        mediaImg.onerror = function () {
+          if (this.src && !this.src.includes(data.fallbackSrc)) {
+            this.src = data.fallbackSrc;
+          } else {
+            this.src = `https://placehold.co/800x450/FFFFFF/1E293B?text=${encodeURIComponent(data.title)}`;
+          }
+        };
+        mediaImg.src = data.gifSrc;
+      }
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      if (modalBox) {
+        modalBox.classList.remove('scale-95');
+        modalBox.classList.add('scale-100');
+      }
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close Visual Preview Modal
+    function closePreviewModal() {
+      const modal = document.getElementById('previewModal');
+      const modalBox = document.getElementById('modalBox');
+      if (!modal) return;
+
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      if (modalBox) {
+        modalBox.classList.remove('scale-100');
+        modalBox.classList.add('scale-95');
+      }
+      document.body.style.overflow = '';
+
+      setTimeout(() => {
+        const mediaImg = document.getElementById('modalMediaImage');
+        if (mediaImg) mediaImg.src = '';
+      }, 250);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePreviewModal();
+    });
+
+    const previewModalEl = document.getElementById('previewModal');
+    if (previewModalEl) {
+      previewModalEl.addEventListener('click', (e) => {
+        if (e.target === previewModalEl) closePreviewModal();
+      });
+    }
+
+    // Dynamic Operations ROI Calculator
+    function calculateROI() {
+      const teamInput = document.getElementById('teamInput');
+      const hoursInput = document.getElementById('hoursInput');
+      const wageInput = document.getElementById('wageInput');
+
+      if (!teamInput || !hoursInput || !wageInput) return;
+
+      const team = parseInt(teamInput.value, 10);
+      const hours = parseInt(hoursInput.value, 10);
+      const wage = parseInt(wageInput.value, 10);
+
+      const teamDisplay = document.getElementById('teamCountDisplay');
+      const hoursDisplay = document.getElementById('hoursCountDisplay');
+      const wageDisplay = document.getElementById('wageDisplay');
+
+      if (teamDisplay) teamDisplay.textContent = `${team} ${team === 1 ? 'person' : 'people'}`;
+      if (hoursDisplay) hoursDisplay.textContent = `${hours} hours`;
+      if (wageDisplay) wageDisplay.textContent = `$${wage} / hr`;
+
+      const totalHoursSaved = team * hours * 52;
+      const totalCapitalSaved = totalHoursSaved * wage;
+
+      const annualSavings = document.getElementById('annualSavings');
+      const annualHours = document.getElementById('annualHours');
+
+      if (annualSavings) annualSavings.textContent = `$${totalCapitalSaved.toLocaleString()}`;
+      if (annualHours) annualHours.textContent = totalHoursSaved.toLocaleString();
+    }
+
+    // Copy Email to Clipboard helper
+    function copyEmailToClipboard() {
+      const email = 'christinegaylo@gmail.com';
+      const tempInput = document.createElement('input');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      showToast(`Copied ${email} to clipboard!`);
+    }
+
+    // Testimonial Carousel State & Controls
+    let currentSlide = 0;
+    let slideInterval = null;
+    const totalSlides = 7;
+
+    function getCardWidth() {
+      const firstCard = document.querySelector('#testimonialSliderTrack > div');
+      if (!firstCard) return 500;
+      const gap = 20;
+      return firstCard.offsetWidth + gap;
+    }
+
+    function updateSliderPosition() {
+      const track = document.getElementById('testimonialSliderTrack');
+      if (!track) return;
+      const offset = currentSlide * getCardWidth();
+      track.style.transform = `translateX(-${offset}px)`;
+      renderDots();
+    }
+
+    function nextTestimonial() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSliderPosition();
+    }
+
+    function prevTestimonial() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSliderPosition();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSliderPosition();
+    }
+
+    function startAutoSlide() {
+      if (slideInterval) clearInterval(slideInterval);
+      slideInterval = setInterval(() => {
+        nextTestimonial();
+      }, 4500);
+    }
+
+    function pauseTestimonials() {
+      if (slideInterval) clearInterval(slideInterval);
+    }
+
+    function resumeTestimonials() {
+      startAutoSlide();
+    }
+
+    function renderDots() {
+      const dotsContainer = document.getElementById('testimonialDots');
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `h-2 rounded-full transition-all duration-300 ${i === currentSlide ? 'w-6 bg-indigo-600' : 'w-2 bg-slate-300 hover:bg-slate-400'}`;
+        dot.setAttribute('aria-label', `Go to review ${i + 1}`);
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      updateSliderPosition();
+    });
+
+    // Toast Notification System
     function showToast(message) {
       const toast = document.getElementById('toastNotification');
-      const toastMessage = document.getElementById('toastMessage');
-      if (!toast || !toastMessage) return;
+      const toastMsg = document.getElementById('toastMessage');
 
-      toastMessage.textContent = message;
+      if (!toast || !toastMsg) return;
+
+      toastMsg.textContent = message;
       toast.classList.remove('translate-y-24', 'opacity-0');
       toast.classList.add('translate-y-0', 'opacity-100');
 
@@ -1082,190 +2190,12 @@
       }, 3500);
     }
 
-    const loomData = {
-      1: {
-        titleBar: "Loom Walkthrough // Multi-Branch Error Router.mp4",
-        title: "HubSpot to Make.com: Multi-Branch Error Router & Deduplication",
-        summary: "Deep dive into a scenario handling 5,000 requests/day. Demonstrating Break / Resume routers, exponential backoff delays, and auto-logging into an operational health dashboard.",
-        duration: "04:15"
-      },
-      2: {
-        titleBar: "Loom Walkthrough // Autonomous RFP Parser.mp4",
-        title: "Autonomous RFP & Contract Parsing Agent (Claude 3.5 + n8n)",
-        summary: "Step-by-step review of vector extraction logic. Extracts deliverables, liability caps, and custom clauses into Airtable with an executive Slack alert.",
-        duration: "03:48"
-      },
-      3: {
-        titleBar: "Loom Walkthrough // Stripe Churn Recovery.mp4",
-        title: "Self-Healing Failed Payment Recovery (GoHighLevel + Stripe)",
-        summary: "Smart sequence that pauses service on 3rd retry, sends personalized SMS with one-click payment token, recovering $38,000 in monthly recurring revenue.",
-        duration: "05:10"
-      }
+    // Initialize state on window load
+    window.onload = function () {
+      calculateROI();
+      renderDots();
+      startAutoSlide();
     };
-
-    const playlistCards = document.querySelectorAll('.loom-item-card');
-    const loomScreen = document.getElementById('loomVideoScreen');
-    const loomPlayIcon = document.getElementById('loomPlayIcon');
-    const loomProgressTrack = document.getElementById('loomProgressTrack');
-    const loomTotalDuration = document.getElementById('loomTotalDuration');
-    const loomCurrentTime = document.getElementById('loomCurrentTime');
-    const currentLoomTitle = document.getElementById('currentLoomTitle');
-    const currentLoomTitleBar = document.getElementById('currentLoomTitleBar');
-    const currentLoomSummary = document.getElementById('currentLoomSummary');
-
-    playlistCards.forEach(card => {
-      card.addEventListener('click', () => {
-        playlistCards.forEach(c => {
-          c.classList.remove('border-brand-primary', 'bg-brand-tint/50');
-          c.classList.add('border-brand-border');
-        });
-        card.classList.add('border-brand-primary', 'bg-brand-tint/50');
-        card.classList.remove('border-brand-border');
-
-        const id = card.getAttribute('data-id');
-        const item = loomData[id];
-        if (item) {
-          currentLoomTitleBar.textContent = item.titleBar;
-          currentLoomTitle.textContent = item.title;
-          currentLoomSummary.textContent = item.summary;
-          loomTotalDuration.textContent = item.duration;
-          loomProgressTrack.style.width = '25%';
-          loomCurrentTime.textContent = '00:45';
-          showToast(`Loaded "${item.title.substring(0, 32)}..."`);
-        }
-      });
-    });
-
-    let isPlayingLoom = false;
-    let loomTimer = null;
-
-    if (loomScreen) {
-      loomScreen.addEventListener('click', () => {
-        isPlayingLoom = !isPlayingLoom;
-        if (isPlayingLoom) {
-          loomPlayIcon.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
-          showToast("Simulating Loom screen walkthrough playback...");
-          let currentPct = 25;
-          loomTimer = setInterval(() => {
-            currentPct = (currentPct + 2) % 100;
-            loomProgressTrack.style.width = currentPct + '%';
-          }, 400);
-        } else {
-          loomPlayIcon.innerHTML = '<i class="fa-solid fa-play text-xl ml-1"></i>';
-          clearInterval(loomTimer);
-        }
-      });
-    }
-
-    // Filter tabs for Loom Videos
-    const filterButtons = document.querySelectorAll('.loom-filter-btn');
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => {
-          b.classList.remove('bg-brand-primary', 'text-white');
-          b.classList.add('glass-panel', 'text-brand-body');
-        });
-        btn.classList.add('bg-brand-primary', 'text-white');
-        btn.classList.remove('glass-panel', 'text-brand-body');
-
-        const cat = btn.getAttribute('data-category');
-        playlistCards.forEach(card => {
-          const cardCat = card.getAttribute('data-cat');
-          if (cat === 'all' || cardCat === cat) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    const teamSlider = document.getElementById('teamSizeSlider');
-    const hoursSlider = document.getElementById('hoursSlider');
-    const rateSlider = document.getElementById('rateSlider');
-
-    const teamSizeValue = document.getElementById('teamSizeValue');
-    const hoursPerWeekValue = document.getElementById('hoursPerWeekValue');
-    const hourlyCostValue = document.getElementById('hourlyCostValue');
-
-    const annualSavingsText = document.getElementById('annualSavingsText');
-    const annualHoursText = document.getElementById('annualHoursText');
-
-    function calculateROI() {
-      const team = parseInt(teamSlider.value, 10);
-      const hours = parseInt(hoursSlider.value, 10);
-      const rate = parseInt(rateSlider.value, 10);
-
-      teamSizeValue.textContent = `${team} ${team === 1 ? 'person' : 'people'}`;
-      hoursPerWeekValue.textContent = `${hours} hours / wk`;
-      hourlyCostValue.textContent = `$${rate} / hr`;
-
-      // 52 weeks in a year
-      const totalHoursLost = team * hours * 52;
-      const totalDollarLoss = totalHoursLost * rate;
-
-      annualSavingsText.textContent = `$${totalDollarLoss.toLocaleString()}`;
-      annualHoursText.textContent = `${totalHoursLost.toLocaleString()} hrs/yr`;
-    }
-
-    if (teamSlider && hoursSlider && rateSlider) {
-      teamSlider.addEventListener('input', calculateROI);
-      hoursSlider.addEventListener('input', calculateROI);
-      rateSlider.addEventListener('input', calculateROI);
-      calculateROI(); // initialize
-    }
-
-    const auditForm = document.getElementById('auditForm');
-    if (auditForm) {
-      auditForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('contactName')?.value || 'Prospective Client';
-        const senderEmail = document.getElementById('contactEmail')?.value || 'Not provided';
-        const stack = document.getElementById('contactStack')?.value || 'Not specified';
-
-        // Collect checked friction points
-        const checkedItems = [];
-        document.querySelectorAll('.audit-check:checked').forEach(input => {
-          const text = input.nextElementSibling ? input.nextElementSibling.textContent.trim() : '';
-          if (text) checkedItems.push(`- ${text}`);
-        });
-
-        const subject = `Systems Audit & Project Inquiry - ${name}`;
-        const body = `Hi Christine,
-
-I'm reaching out regarding automation and CRM architecture.
-
-Client Details:
-- Name: ${name}
-- Email: ${senderEmail}
-- Current Tech Stack: ${stack}
-
-Current Friction Points:
-${checkedItems.length > 0 ? checkedItems.join('\n') : '- None selected'}
-
-Looking forward to discussing potential solutions.`;
-
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=christinegaylo@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        showToast("Redirecting to Gmail compose...");
-        window.open(gmailUrl, '_blank');
-      });
-    }
-
-    // Copy Email to Clipboard helper
-    const copyEmailBtn = document.getElementById('copyEmailBtn');
-    if (copyEmailBtn) {
-      copyEmailBtn.addEventListener('click', () => {
-        const dummy = document.createElement('textarea');
-        dummy.value = 'christinegaylo@gmail.com';
-        document.body.appendChild(dummy);
-        dummy.select();
-        document.execCommand('copy');
-        document.body.removeChild(dummy);
-        showToast("Email copied to clipboard: christinegaylo@gmail.com");
-      });
-    }
   </script>
 </body>
 
